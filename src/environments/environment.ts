@@ -3,7 +3,21 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  EndPointAPI: 'https://radiant-stream-23882.herokuapp.com',
+
+  APIPrefix: '/api',
+  APIVersion: '/v1',
+
+  //brand
+  APIBrand: '/brand',
+
+  //menu
+  APIMenu: '/menu',
+
+  //slider
+  APISlider: '/slider',
 };
 
 /*

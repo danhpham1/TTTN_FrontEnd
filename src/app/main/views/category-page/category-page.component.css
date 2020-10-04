@@ -1,0 +1,9 @@
+main .shop-page-title nav a:first-child{
+    padding-right: 5px;
+    padding-left: 0px !important;
+}
+
+main .shop-page-title nav a{
+    padding-left: 5px;
+    padding-right: 5px;
+}

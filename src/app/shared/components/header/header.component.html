@@ -1,0 +1,78 @@
+<header class="header">
+    <div class="header-main">
+        <div class="left-header">
+            <form class="form-inline active-pink-4">
+                <input class="form-control" type="text" placeholder="Tìm Kiếm...">
+                <button type="button" class="btn btn-danger search"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+        <div class="header-logo">
+            <a routerLink='/home'>
+                <h3 class="text-danger font-weight-bold">watch</h3>
+            </a>
+        </div>
+        <div class="right-header">
+            <button type="button" class="btn btn-danger login">Đăng Nhập</button>
+            <!-- <div class="btn-group" role="group">
+                <button id="btnGroupDrop1" type="button" class="btn btn-danger login dropdown-toggle"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Admin
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <a class="dropdown-item" href="#">Đơn Hàng</a>
+                    <a class="dropdown-item" href="#">Đăng Xuất</a>
+                </div>
+            </div> -->
+            |
+            <button type="button" class="btn btn-danger cart">Giỏ Hàng/0 Sản Phẩm <i
+                    class="fa fa-cart-plus"></i></button>
+        </div>
+    </div>
+    <nav class="wide-nav">
+        <div class="wrapper-nav">
+            <ul>
+                <li *ngFor="let menu of menu$ | async">
+                    <ng-container *ngIf="menu.title == 'Thương Hiệu'">
+                        <a routerLink="/category/all">{{menu.title}}<i class="fa fa-angle-down text-secondary"></i></a>
+                        <!-- sub nav -->
+                        <ul *ngIf="menu.subMenu.length >= 1">
+                            <li *ngFor="let menuSub of menu.subMenu">
+                                <a routerLink="/category/brand" [queryParams]="{brand:menuSub}">
+                                    {{menuSub}}
+                                </a>
+                            </li>
+                        </ul>
+                    </ng-container>
+                    <ng-container *ngIf="menu.title == 'Đồng Hồ Nam'">
+                        <a routerLink="/category/dong-ho-nam">{{menu.title}}<i
+                                class="fa fa-angle-down text-secondary"></i></a>
+                        <!-- sub nav -->
+                        <ul *ngIf="menu.subMenu.length >= 1">
+                            <li *ngFor="let menuSub of menu.subMenu">
+                                <a routerLink="/category/dong-ho-nam" [queryParams]="{brand:menuSub}">{{menuSub}}</a>
+                            </li>
+                        </ul>
+                    </ng-container>
+                    <ng-container *ngIf="menu.title == 'Đồng Hồ Nữ'">
+                        <a routerLink="/category/dong-ho-nu">{{menu.title}}<i
+                                class="fa fa-angle-down text-secondary"></i></a>
+                        <!-- sub nav -->
+                        <ul *ngIf="menu.subMenu.length >= 1">
+                            <li *ngFor="let menuSub of menu.subMenu">
+                                <a routerLink="/category/dong-ho-nu" [queryParams]="{brand:menuSub}">{{menuSub}}</a>
+                            </li>
+                        </ul>
+                    </ng-container>
+                    <ng-container *ngIf="menu.title == 'Tin Tức'">
+                        <a routerLink="/tin-tuc">{{menu.title}}<i class="fa fa-angle-down text-secondary"></i></a>
+                        <!-- sub nav -->
+                    </ng-container>
+                    <ng-container *ngIf="menu.title == 'Liên Hệ'">
+                        <a routerLink="/lien-he">{{menu.title}}<i class="fa fa-angle-down text-secondary"></i></a>
+                        <!-- sub nav -->
+                    </ng-container>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
