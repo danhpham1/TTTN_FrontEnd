@@ -33,18 +33,19 @@
             <ul>
                 <li *ngFor="let menu of menu$ | async">
                     <ng-container *ngIf="menu.title == 'Thương Hiệu'">
-                        <a routerLink="/category/all">{{menu.title}}<i class="fa fa-angle-down text-secondary"></i></a>
+                        <a routerLink="/category/all" [routerLinkActive]="'active'">{{menu.title}}<i
+                                class="fa fa-angle-down text-secondary"></i></a>
                         <!-- sub nav -->
                         <ul *ngIf="menu.subMenu.length >= 1">
                             <li *ngFor="let menuSub of menu.subMenu">
-                                <a routerLink="/category/brand" [queryParams]="{brand:menuSub}">
+                                <a routerLink="/category/all" [queryParams]="{brand:menuSub}">
                                     {{menuSub}}
                                 </a>
                             </li>
                         </ul>
                     </ng-container>
                     <ng-container *ngIf="menu.title == 'Đồng Hồ Nam'">
-                        <a routerLink="/category/dong-ho-nam">{{menu.title}}<i
+                        <a routerLink="/category/dong-ho-nam" [routerLinkActive]="'active'">{{menu.title}}<i
                                 class="fa fa-angle-down text-secondary"></i></a>
                         <!-- sub nav -->
                         <ul *ngIf="menu.subMenu.length >= 1">
@@ -54,7 +55,7 @@
                         </ul>
                     </ng-container>
                     <ng-container *ngIf="menu.title == 'Đồng Hồ Nữ'">
-                        <a routerLink="/category/dong-ho-nu">{{menu.title}}<i
+                        <a routerLink="/category/dong-ho-nu" [routerLinkActive]="'active'">{{menu.title}}<i
                                 class="fa fa-angle-down text-secondary"></i></a>
                         <!-- sub nav -->
                         <ul *ngIf="menu.subMenu.length >= 1">

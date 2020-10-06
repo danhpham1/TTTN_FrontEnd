@@ -7,3 +7,7 @@ main .shop-page-title nav a{
     padding-left: 5px;
     padding-right: 5px;
 }
+
+.pagi /deep/ .ngx-pagination .current{
+    background-color: red !important;
+}

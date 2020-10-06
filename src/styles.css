@@ -3,14 +3,10 @@
     margin: 0;
     font-size: 16px;
     padding: 0;
-    box-sizing: border-box;
     /* height: 100%;
     overflow: hidden; */
 }
 
-html{
-    min-height: 100vh;
-}
 
 ul{
     margin: 0 !important;
@@ -161,7 +157,7 @@ nav .wrapper-nav ul li ul li:hover{
     transition: ease-in-out 0.s;
 } 
 
-nav .active{
+.active{
     color: red !important;
 }
 

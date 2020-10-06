@@ -1,22 +1,20 @@
-<div class="col-lg-3 col-md-6 col-sm-6">
-    <div class="product-cart">
-        <span>
-            <a routerLink="/product/{{product._id}}"><i class="fa fa-shopping-cart fa-2x text-danger"></i></a>
-        </span>
-        <div class="box-img">
+<div class="product-cart pl-2 pr-2">
+    <span>
+        <a routerLink="/product/{{product._id}}"><i class="fa fa-shopping-cart fa-2x text-danger"></i></a>
+    </span>
+    <div class="box-img">
+        <a routerLink="/product/{{product._id}}">
+            <img src="{{environment.EndPointAPI}}/img/product/{{product.logo}}" alt="">
+        </a>
+    </div>
+    <div class="box-text">
+        <div class="box-title">
             <a routerLink="/product/{{product._id}}">
-                <img src="{{environment.EndPointAPI}}/img/product/{{product.logo}}" alt="">
+                <p>{{product.title}}</p>
             </a>
         </div>
-        <div class="box-text">
-            <div class="box-title">
-                <a routerLink="/product/{{product._id}}">
-                    <p>{{product.title}}</p>
-                </a>
-            </div>
-            <div class="box-price">
-                <h5>{{product.price}}</h5>
-            </div>
+        <div class="box-price">
+            <h5>{{product.price | currency:"VND":"symbol"}}</h5>
         </div>
     </div>
 </div>
