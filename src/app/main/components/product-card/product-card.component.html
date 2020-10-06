@@ -1,21 +1,21 @@
 <div class="col-lg-3 col-md-6 col-sm-6">
     <div class="product-cart">
         <span>
-            <a href="#"><i class="fa fa-shopping-cart fa-2x text-danger"></i></a>
+            <a routerLink="/product/{{product._id}}"><i class="fa fa-shopping-cart fa-2x text-danger"></i></a>
         </span>
         <div class="box-img">
-            <a routerLink="/product">
-                <img src="/assets/DW00100310-300x300.jpg" alt="">
+            <a routerLink="/product/{{product._id}}">
+                <img src="{{environment.EndPointAPI}}/img/product/{{product.logo}}" alt="">
             </a>
         </div>
         <div class="box-text">
             <div class="box-title">
-                <a href="#">
-                    <p>DW DW00100150 – Size 36 – Nam – Dây Vải – Pin ( Quartz )</p>
+                <a routerLink="/product/{{product._id}}">
+                    <p>{{product.title}}</p>
                 </a>
             </div>
             <div class="box-price">
-                <h5>4.100.000đ</h5>
+                <h5>{{product.price}}</h5>
             </div>
         </div>
     </div>

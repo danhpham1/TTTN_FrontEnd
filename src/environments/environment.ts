@@ -18,6 +18,9 @@ export const environment = {
 
   //slider
   APISlider: '/slider',
+
+   //product
+   APIProduct: '/product',
 };
 
 /*
