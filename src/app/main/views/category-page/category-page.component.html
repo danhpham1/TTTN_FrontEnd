@@ -3,9 +3,19 @@
         <div class="container">
             <h4>Đồng hồ đeo tay</h4>
             <nav>
-                <a href="#">Trang chủ</a>
+                <a routerLink="/">Trang chủ</a>
                 <span>/</span>
-                <a href="#">Đồng hồ nam</a>
+                <ng-container *ngIf="titleNamePageActive" [ngSwitch]="titleNamePageActive">
+                    <span *ngSwitchCase="'all'">
+                        Thương Hiệu
+                    </span>
+                    <span *ngSwitchCase="'nam'">
+                        Đồng Hồ Nam
+                    </span>
+                    <span *ngSwitchCase="'nu'">
+                        Đồng Hồ Nữ
+                    </span>
+                </ng-container>
             </nav>
         </div>
     </div>

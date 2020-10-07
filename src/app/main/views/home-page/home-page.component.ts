@@ -24,13 +24,13 @@ export class HomePageComponent implements OnInit {
   watchFemale$: Observable<Array<Product>>;
   test: Array<Product>;
   environment = environment;
-  constructor(private brandService: BrandService, private sliderService: SliderService, private productService:ProductService) { }
+  constructor(private brandService: BrandService, private sliderService: SliderService, private productService: ProductService) { }
 
   ngOnInit(): void {
     this.slider$ = this.sliderService.getSlider();
     this.brand$ = this.brandService.getBrand();
-    this.watchMale$ = this.productService.getProductWithType('nam',6).pipe(map(rs => rs.data));
-    this.watchFemale$ = this.productService.getProductWithType('nu', 6).pipe(map(rs => rs.data));
+    this.watchMale$ = this.productService.getProductWithType('nam', '6').pipe(map(rs => rs.data));
+    this.watchFemale$ = this.productService.getProductWithType('nu', '6').pipe(map(rs => rs.data));
   }
 
 }

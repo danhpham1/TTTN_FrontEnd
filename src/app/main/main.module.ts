@@ -1,5 +1,5 @@
 import { ProductDetailPageComponent } from './views/product-detail-page/product-detail-page.component';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MainRoutingModule } from './main-routing.module';
@@ -10,12 +10,14 @@ import { CategoryPageComponent } from './views/category-page/category-page.compo
 import { ProductCardComponent } from './components/product-card/product-card.component';
 
 
+
+
 @NgModule({
   declarations: [HomePageComponent, CategoryPageComponent, ProductDetailPageComponent, ProductCardComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
     NgxPaginationModule
-  ]
+  ],
 })
 export class MainModule { }

@@ -31,10 +31,10 @@
                 <b></b>
             </h2>
             <div class="row justify-content-between">
-                    <app-product-card *ngFor="let item of watchMale$|async" [product]="item"></app-product-card>
+                <app-product-card *ngFor="let item of watchMale$|async" [product]="item"></app-product-card>
             </div>
             <div class="btn-see-all">
-                <button routerLink="/category/nam">Xem tất cả</button>
+                <button routerLink="/category/dong-ho-nam">Xem tất cả</button>
             </div>
         </div>
         <!-- đồng hồ nữ -->
@@ -45,10 +45,10 @@
                 <b></b>
             </h2>
             <div class="row justify-content-between">
-                    <app-product-card *ngFor="let product of watchFemale$ | async" [product]="product"></app-product-card>
+                <app-product-card *ngFor="let product of watchFemale$ | async" [product]="product"></app-product-card>
             </div>
             <div class="btn-see-all">
-                <button routerLink="/category/nu">Xem tất cả</button>
+                <button routerLink="/category/dong-ho-nu">Xem tất cả</button>
             </div>
         </div>
 

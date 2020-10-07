@@ -1,33 +1,39 @@
 <main>
     <div class="container mt-2">
-        <div class="row">
+        <div class="row" *ngIf="product$|async as product">
             <nav class="title-product">
-                <a href="#">
+                <a routerLink="/">
                     Trang chủ
                 </a>
                 /
-                <a href="#">
-                    Đồng hồ nam
-                </a>
+                <ng-container>
+                    <a routerLink="/category/dong-ho-nam" *ngIf="product.type == 'nam'">
+                        Đồng Hồ Nam
+                    </a>
+                    <a routerLink="/category/dong-ho-nu" *ngIf="product.type == 'nu'">
+                        Đồng Hồ Nữ
+                    </a>
+                </ng-container>
             </nav>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-12 col-sm-12">
-                <img src="/assets/A159W-N1DF-600x600.jpg" class="fancybox zoom img-fluid " alt="">
+            <div class="col-lg-4 col-md-12 col-sm-12" *ngIf="product$|async as product">
+                <img src="{{environment.EndPointAPI}}/img/product/{{product.logo}}" class="fancybox zoom img-fluid "
+                    alt="">
             </div>
-            <div class="col-lg-4 col-md-12 col-sm-12">
+            <div class="col-lg-4 col-md-12 col-sm-12" *ngIf="product$|async as product">
                 <div class="product-describe">
                     <div class="product-describe-title">
-                        <h1>Casio A159W-N1DF – Nam – Thép không Gỉ – Pin ( Quartz ) – Kính Nhựa</h1>
+                        <h1>{{product.title}}</h1>
                     </div>
                     <hr>
                     <div class="product-describe-price">
                         <span>Giá:
-                            <h5>893.000₫</h5>
+                            <h5>{{product.price | currency:"VND":"symbol"}}</h5>
                         </span>
                     </div>
                     <div class="product-describe-guarantee">
-                        <p>Chính sách bảo hành: <b>1 Năm</b></p>
+                        <p>Chính sách bảo hành: <b>{{product.guarantee}} Năm</b></p>
                     </div>
                     <div class="product-describe-button">
                         <button>Thêm vào giỏ hàng</button>
@@ -35,11 +41,13 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-12 pl-5">
+            <div class="col-lg-4 col-md-12 pl-5" *ngIf="product$|async as product">
                 <div class="product-left">
-                    <div class="product-lef-img">
-                        <img src="/assets/1599498436032-logo-Casio.png" alt="">
-                    </div>
+                    <ng-container *ngIf="brand$|async as brand">
+                        <div class="product-lef-img">
+                            <img src="{{environment.EndPointAPI}}/img/brand/{{brand.logo}}" alt="">
+                        </div>
+                    </ng-container>
                     <div class="product-left-box">
                         <div>
                             <img src="/assets/4.png" alt="">
@@ -73,291 +81,30 @@
                 </div>
 
                 <div class="product-data" id="collapse-describe">
-                    <div class="product-data-describe">
-                        <h3>Thông Số Kỹ Thuật Đồng Hồ DW00100309</h3>
+                    <div class="product-data-describe" *ngIf="product$|async as product">
+                        <h3>Thông Số Kỹ Thuật Đồng Hồ {{product.name}}</h3>
                         <ul>
-                            <li><b>Thương Hiệu:</b>DW</li>
-                            <li><b>Đường Kính:</b>DW</li>
-                            <li><b>Giới Tính:</b>DW</li>
-                            <li><b>Độ Dày:</b>DW</li>
-                            <li><b>Loại Kính:</b>DW</li>
-                            <li><b>Màu Dây:</b>DW</li>
-                            <li><b>Máy:</b>DW</li>
-                            <li><b>Niềng:</b>DW</li>
-                            <li><b>Chất Liệu Dây:</b>DW</li>
-                            <li><b>Chịu Nước:</b>DW</li>
-                            <li><b>Màu Mặt số:</b>DW</li>
-                            <li><b>Chức Năng:</b>DW</li>
+                            <li><b>Thương Hiệu:</b>{{product.describe.thuonghieu}}</li>
+                            <li><b>Đường Kính:</b>{{product.describe.duongkinh}}</li>
+                            <li><b>Giới Tính:</b>{{product.describe.gioitinh}}</li>
+                            <li><b>Độ Dày:</b>{{product.describe.doday}}</li>
+                            <li><b>Loại Kính:</b>{{product.describe.loaikinh}}</li>
+                            <li><b>Màu Dây:</b>{{product.describe.mauday}}</li>
+                            <li><b>Máy:</b>{{product.describe.may}}</li>
+                            <li><b>Niềng:</b>{{product.describe.nieng}}</li>
+                            <li><b>Chất Liệu Dây:</b>{{product.describe.chatlieuday}}</li>
+                            <li><b>Chịu Nước:</b>{{product.describe.chiunuoc}}</li>
+                            <li><b>Màu Mặt số:</b>{{product.describe.maumatso}}</li>
+                            <li><b>Chức Năng:</b>{{product.describe.chucnang}}</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="product-data" id="collapse-product-guarantee">
-                    <div class="product-data-guarantee">
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;"><strong>+
-                                    Bảo
-                                    hành chính hãng 1 năm </strong>cho tất cả các thương hiệu</span></p>
-                        <p><span
-                                style="font-size: 100%; color: #000000; font-family: tahoma, arial, helvetica, sans-serif;">&nbsp;
-                                &nbsp; -
-                                Khi hết thời gian Bảo Hành Quốc Tế cho đồng hồ chính hãng mua tại VinaWatch, quý
-                                khách sẽ được<span style="color: #ff0000;"><strong> thêm 4 năm bảo
-                                        hành</strong>&nbsp;tại VinaWatch</span>&nbsp;với&nbsp;
-                                tất cả các hãng (trừ Casio).</span></p>
-                        <p><span
-                                style="font-size: 100%; color: #000000; font-family: tahoma, arial, helvetica, sans-serif;">&nbsp;
-                                &nbsp; -
-                                Trong thời gian bảo hành, nếu có hư hỏng quý khách sẽ được<strong> thay pin, sữa
-                                    chữa miễn
-                                    phí&nbsp;&nbsp;</strong></span></p>
-                        <p><span style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif;"><span
-                                    style="color: #000000;"><strong>+Thời gian nhận và trả bảo
-                                        hành:&nbsp;&nbsp;</strong></span><span style="color: #000000;">Từ 8h30 đến
-                                    20h00 các ngày trong tuần.</span></span></p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">&nbsp;<strong><em>
-                                        Trường hợp được bảo hành:</em></strong></span></p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">&nbsp;
-                                &nbsp;
-                                &nbsp; - Sản phẩm trong thời hạn còn bảo hành; - Lỗi về máy, pin và độ chịu
-                                nước;</span></p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">&nbsp;
-                                &nbsp;
-                                &nbsp; - Sản phẩm được bảo hành theo quy định của hãng cung cấp</span></p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">&nbsp;
-                                &nbsp;
-                                &nbsp; - Quý khách xuất trình phiếu bảo hành khi đi bảo hành.</span></p>
-                        <p><span style="font-family: tahoma, arial, helvetica, sans-serif; font-size: 100%;"><strong><em><span
-                                            style="color: #000000;">&nbsp; Trường hợp không được bảo
-                                            hành:</span></em></strong></span></p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">&nbsp;
-                                &nbsp;
-                                &nbsp; - Những sản phẩm không thể xác định được nguồn gốc mua tại Đồng hồ Vinawatch
-                                thì cửa hàng có quyền từ
-                                chối bảo hành.</span></p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">&nbsp;
-                                &nbsp;
-                                &nbsp; - Sản phẩm đã quá thời hạn ghi trên Phiếu bảo hành hoặc mất Phiếu bảo
-                                hành.</span></p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">&nbsp;
-                                &nbsp;
-                                &nbsp; - Phiếu bảo hành không bị rách, không còn nguyên thẻ hoặc không được dán đè
-                                hoặc bị sửa đổi.</span>
-                        </p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">&nbsp;
-                                &nbsp;
-                                &nbsp; - Phiếu bảo hành không ghi rõ Mã số đồng hồ và ngày mua hàng.</span></p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">&nbsp;
-                                &nbsp;
-                                &nbsp; - Mã số đồng hồ và Phiếu bảo hành không trùng khớp nhau hoặc không xác định
-                                được vì bất kỳ lý do
-                                nào.</span></p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">&nbsp;
-                                &nbsp;
-                                &nbsp; - Sản phẩm bị hư hỏng do tác động cơ học làm rơi, vỡ, va đập, trầy xước, móp
-                                méo, ẩm ướt, hoen rỉ,
-                                hoặc do hỏa hoạn, thiên tai gây nên. - Sản phẩm bị hư hỏng do sử dụng không đúng
-                                hướng dẫn.</span></p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">&nbsp;
-                                &nbsp;
-                                &nbsp; - Sản phẩm để trong môi trường ẩm ướt, nhiệt độ cao, ngoài nắng nóng , gần
-                                lửa, các nguồn nhiệt vượt
-                                quá nhiệt độ cho phép.</span></p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">&nbsp;
-                                &nbsp;
-                                &nbsp; - Sản phẩm rơi xuống đất hoặc va chạm vào những vật cứng.</span></p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">&nbsp;
-                                &nbsp;
-                                &nbsp; - Khách hàng không tự ý can thiệp vào máy của sản phẩm hoặc đem đến một cửa
-                                hàng khác sửa
-                                chữa.</span></p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;"><strong><em>LƯU
-                                        Ý : - Hết thời hạn bảo hành, chi phí sửa chữa sẽ được trung tâm bảo hành hỗ
-                                        trợ với giá ưu đãi nhất
-                                        !</em></strong></span></p>
-                        <p><span
-                                style="color: #000000; font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif;"><strong>Chính
-                                    sách đổi trả:</strong></span></p>
-                        <ol>
-                            <li><span
-                                    style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;"><strong>Quý
-                                        khách lưu ý</strong></span></li>
-                        </ol>
-                        <ul>
-                            <li><span
-                                    style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">Đồng
-                                    hồ
-                                    mua rồi có thể đổi trả với tình trạng mới 100% trong vòng 7 ngày – Chỉ chấp nhận
-                                    đổi mới sản phẩm nếu có
-                                    lỗi do nhà sản xuất.</span></li>
-                            <li><span
-                                    style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">Lỗi
-                                    của
-                                    nhà sản xuất (NSX) là các lỗi phát sinh trước hoặc trong quá trình sử dụng do
-                                    NSX gây ra. Cụ thể ở đây
-                                    là các lỗi về máy móc bên trong đồng hồ: người dùng sử dụng đúng theo chỉ dẫn
-                                    song đồng hồ hay bị hỏng
-                                    vặt, đồng hồ lúc chạy lúc không hay đồng hồ không hoạt động đúng các chức năng
-                                    như hướng dẫn.</span>
-                            </li>
-                        </ul>
-                        <ol start="2">
-                            <li><span
-                                    style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;"><strong>Điều
-                                        kiện đổi sản phẩm</strong></span></li>
-                        </ol>
-                        <ul>
-                            <li><span
-                                    style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">Trong
-                                    vòng
-                                    7 ngày tính từ ngày mua sản phẩm.</span></li>
-                            <li><span
-                                    style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">Sản
-                                    phẩm
-                                    không có dấu hiệu đã qua sử dụng.</span></li>
-                            <li><span
-                                    style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">Sản
-                                    phẩm
-                                    không bị dây bẩn, trầy xước, hư hỏng, dính hoá chất hoặc có dấu hiệu cạy
-                                    mở.</span></li>
-                            <li><span
-                                    style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">Các
-                                    bộ
-                                    phận, linh kiện, phụ kiện, tài liệu hướng dẫn sử dụng, phiếu bảo hành và quà
-                                    tặng (nếu có),… phải còn
-                                    đầy đủ và không có dấu hiệu đã qua sử dụng.</span></li>
-                            <li><span
-                                    style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">Hộp
-                                    đựng,
-                                    bao bì, đóng gói sản phẩm còn nguyên vẹn.</span></li>
-                        </ul>
-                        <ol start="3">
-                            <li><span
-                                    style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;"><strong>Lưu
-                                        ý</strong></span></li>
-                        </ol>
-                        <ul>
-                            <li><span
-                                    style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">Nếu
-                                    sản
-                                    phẩm đổi trả bị mất những phụ kiện đi kèm hoặc dây dồng hồ bị trầy xước&nbsp;sẽ
-                                    bị trừ phí khoảng 10-50%
-                                    giá trị hàng hóa tùy trường hợp cụ thể.</span></li>
-                            <li><span
-                                    style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">Làm
-                                    rơi
-                                    hoặc va chạm khiến đồng hồ bị vỡ hoặc trầy xước hoặc vô nước không phải là lỗi
-                                    của nhà sản xuất. Những
-                                    sản phẩm này sẽ được chuyển qua chế độ bảo hành theo quy định của hãng.</span>
-                            </li>
-                        </ul>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;"><strong>Để
-                                    tạo
-                                    điều kiện cho quý khách sử dụng đồng hồ tốt hơn, chúng tôi xin gửi đến quý khách
-                                    một số cách bảo quản và
-                                    sử dụng:</strong></span></p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">-
-                                Không nên để
-                                va chạm mạnh xảy ra, sử dụng thô bạo, và tiếp xúc với chất ăn mòn, nhiệt độ cao hoặc
-                                từ trường mạnh.</span>
-                        </p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">
-                                - Đồng hồ dễ
-                                bị nhiễm bẩn vì tiếp xúc với mồ hôi, bụi bặm và các chất khác. Làm sạch đồng hồ theo
-                                định kỳ bằng cách sử
-                                dụng một miếng vải mềm hơi ẩm. Điều này sẽ gia tăng tuổi thọ của đồng hồ. Không sử
-                                dụng bất kì dung môi,
-                                chất làm sạch, chất tẩy công nghiệp, chất dính, sơn hoặc các chất xịt mỹ
-                                phẩm.</span></p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">
-                                - Không đeo
-                                đồng hồ cùng các vòng đeo tay (dễ tạo vết xước/ làm hỏng mặt đồng hồ). - Không kéo
-                                nút chỉnh giờ và bấm các
-                                nút khi đồng hồ bị ướt.</span></p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">
-                                - Nếu nước
-                                hoặc hơi nước ngưng tụ xuất hiện bên trong đồng hồ, cần mang đồng hồ đến cửa hàng để
-                                lau chùi càng nhanh
-                                càng tốt để giảm thiểu hỏng hóc bên trong.</span></p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">
-                                - Khi đồng hồ
-                                bắt đầu sai giờ hoặc chuyển động của kim giây không đều, hãy thay pin càng sớm càng
-                                tốt tại cửa hàng chúng
-                                tôi. Rò rỉ điện do pin chết có thể gây ra hỏng hóc nghiêm trọng cho đồng hồ.</span>
-                        </p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">
-                                -Để duy trì
-                                khả năng chống thấm nước qua thời gian, hãy làm theo hướng dẫn sau:</span></p>
-                        <p><span
-                                style="text-decoration: underline; font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;"><strong>
-                                    Những điều nên làm</strong>:</span></p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">
-                                • Bảo đảm tính
-                                năng chống thấm nước sau mỗi lần mở đồng hồ.</span></p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">
-                                • Sau khi
-                                chỉnh thời gian cho đồng hồ hãy đẩy nút điều chỉnh trở lại vị trí bình
-                                thường.</span></p>
-                        <p><span
-                                style="text-decoration: underline; font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;"><strong>
-                                    Những điều không nên làm</strong>:</span></p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">
-                                • Tránh để
-                                đồng hồ thay đổi nhiệt độ đột ngột</span></p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">
-                                • Tránh làm
-                                rơi hoặc va chạm (kiểm tra tính năng chống thấm nước sau mỗi va chạm mạnh),</span>
-                        </p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">
-                                • Tránh sử
-                                dụng các bộ phận đang hoạt động, nhấn các nút hoặc cài đặt nút điều chỉnh dưới nước.
-                                &nbsp;</span></p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">
-                                -Khi cốt dây
-                                đồng hồ bị lỏng và tụt ra, các bạn hãy tháo ngay hoặc đánh dấu ngay vị trí chốt đó
-                                để thay ngay chốt khác ,
-                                tuyệt đối không được dùng tay đẩy vào vì các bạn đẩy vào được thì chốt đó sẽ tiếp
-                                tục xúc ra và có thể rơi
-                                mất đồng hồ khi nào không biết</span></p>
-                        <p><span
-                                style="font-size: 100%; font-family: tahoma, arial, helvetica, sans-serif; color: #000000;">
-                                <i> -</i> Các
-                                kĩ thuật viên có tay nghề, trong môi trường không bụi bẩn sẽ cẩn thận lắp ráp đồng
-                                hồ của bạn. Không mở hoặc
-                                không cho phép bất kì ai không có quyền mở đồng hồ, vì việc này có thể gây hỏng đồng
-                                hồ và làm mất hiệu lực
-                                các điều kiện bảo hành .</span></p>
+                    <div class="product-data-guarantee" *ngIf="product$|async as product"
+                        [innerHTML]='product.warrantyPolicy'>
                     </div>
                 </div>
-
-
             </div>
         </div>
         <hr>
@@ -365,9 +112,9 @@
             <div class="col-lg-12 col-md-12 col-sm-12 mt-3 mb-3">
                 <h4 class="text-center text-uppercase">Sản phẩm tương tự</h4>
             </div>
-            <app-product-card></app-product-card>
-            <app-product-card></app-product-card>
-            <app-product-card></app-product-card>
+            <ng-container *ngFor="let item of productRand$|async">
+                <app-product-card [product]="item"></app-product-card>
+            </ng-container>
         </div>
     </div>
 </main>

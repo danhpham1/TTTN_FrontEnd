@@ -3,9 +3,10 @@ main .shop-page-title nav a:first-child{
     padding-left: 0px !important;
 }
 
-main .shop-page-title nav a{
+main .shop-page-title nav span{
     padding-left: 5px;
     padding-right: 5px;
+    font-weight: 500;
 }
 
 .pagi /deep/ .ngx-pagination .current{

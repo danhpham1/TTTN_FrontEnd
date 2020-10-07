@@ -14,22 +14,39 @@ export class CategoryPageComponent implements OnInit {
   product$: Observable<Array<Product>>;
   config: any;
   collection = { count: 0, data: [] };
+  titleNamePageActive: string;
+  brandNamePageActive: string;
   constructor(private route: ActivatedRoute, private produtService: ProductService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      if (params["name"] == 'all') {
-        console.log(params);
-        this.product$ = this.produtService.getProductWithType().pipe(map(rs => rs.data.reverse()));
-        this.configPagenation();
-      } else if (params["name"] == 'dong-ho-nam') {
-        console.log(params);
-        this.product$ = this.produtService.getProductWithType('nam').pipe(map(rs => rs.data.reverse()));
-        this.configPagenation();
-      } else if (params["name"] == 'dong-ho-nu') {
-        this.product$ = this.produtService.getProductWithType('nu').pipe(map(rs => rs.data.reverse()));
-        this.configPagenation();
-      }
+      this.route.queryParams.subscribe(querys => {
+        let type: string;
+        let brand: string;
+        if (params["name"] == 'all') {
+          type = '';
+          this.titleNamePageActive = 'all';
+          if (querys['brand']) {
+            brand = querys['brand'];
+            this.brandNamePageActive = brand;
+          }
+        } else if (params["name"] == 'dong-ho-nam') {
+          type = 'nam';
+          this.titleNamePageActive = type;
+          if (querys['brand']) {
+            brand = querys['brand'];
+            this.brandNamePageActive = brand;
+          }
+        } else if (params["name"] == 'dong-ho-nu') {
+          type = 'nu';
+          this.titleNamePageActive = type;
+          if (querys['brand']) {
+            brand = querys['brand'];
+            this.brandNamePageActive = brand;
+          }
+        }
+        this.callGetProductService(type, brand);
+      })
     })
   }
 
@@ -53,6 +70,11 @@ export class CategoryPageComponent implements OnInit {
   pageChanged(event) {
     window.scrollTo(0, 0);
     this.config.currentPage = event;
+  }
+
+  callGetProductService(type?: string, brand?: string, size?: string) {
+    this.product$ = this.produtService.getProductWithType(type, brand, size).pipe(map(rs => rs.data.reverse()));
+    this.configPagenation();
   }
 
 }

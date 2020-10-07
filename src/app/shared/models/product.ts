@@ -1,9 +1,9 @@
-export interface ProductResponse{
+export interface ProductResponse {
     success: boolean,
-    data:Array<Product>
+    data: Array<Product>
 }
 
-export interface Product{
+export interface Product {
     dateCreate: string,
     isHide: boolean,
     _id: string,
@@ -14,10 +14,12 @@ export interface Product{
     describe: ProductDescribe,
     warrantyPolicy: string,
     logo: string,
-    creator:string
+    creator: string,
+    type: string,
+    guarantee: string
 }
 
-export interface ProductDescribe{
+export interface ProductDescribe {
     thuonghieu: string,
     gioitinh: string,
     loaikinh: string,
@@ -29,5 +31,5 @@ export interface ProductDescribe{
     mauday: string,
     nieng: string,
     chiunuoc: string,
-    chucnang:string
+    chucnang: string
 }
