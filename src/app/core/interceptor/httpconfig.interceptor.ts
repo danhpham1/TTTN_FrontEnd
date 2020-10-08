@@ -3,17 +3,19 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor, HttpResponse
+  HttpInterceptor, HttpResponse, HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
+
 
 @Injectable()
 export class HttpconfigInterceptor implements HttpInterceptor {
 
-  constructor(private spiner:NgxSpinnerService) {}
+  constructor(private spiner: NgxSpinnerService, private roter: Router) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     this.spiner.show();
@@ -24,6 +26,20 @@ export class HttpconfigInterceptor implements HttpInterceptor {
           console.log("-------Event---->", event);
         }
         return event;
+      }),
+      catchError((err: HttpErrorResponse) => {
+        this.spiner.hide();
+        switch (err.status) {
+          case 401:
+            this.roter.navigateByUrl('auth/login');
+            return throwError(err);
+          case 503:
+            // console.log("test");
+            this.roter.navigateByUrl('auth/register');
+            return throwError(err);
+          default:
+            return throwError(err);
+        }
       })
     )
   }

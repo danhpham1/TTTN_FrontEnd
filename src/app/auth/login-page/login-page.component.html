@@ -4,19 +4,28 @@
             <h1>Watch Login</h1>
         </div>
 
-        <div class="login-form">
+        <form class="login-form" #loginForm="ngForm" (ngSubmit)="loginUser(loginForm)">
             <div class="control-group">
-                <input type="text" class="login-field" value="" placeholder="username" id="login-name">
-                <label class="login-field-icon fui-user" for="login-name"></label>
+                <input type="text" required class="login-field" value="" placeholder="username" id="username"
+                    name="username" ngModel>
+                <label class="login-field-icon fui-user" for="username"></label>
+                <ng-container *ngIf="isUsernameValid == false">
+                    <p class="text-danger">Username bắt buộc</p>
+                </ng-container>
             </div>
 
             <div class="control-group">
-                <input type="password" class="login-field" value="" placeholder="password" id="login-pass">
-                <label class="login-field-icon fui-lock" for="login-pass"></label>
+                <input type="password" required class="login-field" value="" placeholder="password" id="password"
+                    name="password" ngModel>
+                <label class="login-field-icon fui-lock" for="password"></label>
+                <ng-container *ngIf="isPasswordValid == false">
+                    <p class="text-danger">Password bắt buộc</p>
+                </ng-container>
             </div>
 
-            <a class="btn btn-primary btn-large btn-block" href="#">login</a>
-            <p class="mt-2">Do you have account?<a class="login-link" routerLink="/auth/register">Register</a></p>
-        </div>
+            <button class="btn btn-primary btn-large btn-block" type="submit">login</button>
+        </form>
+        <p class="mt-2 text-center">Do you have account?<a class="login-link" routerLink="/auth/register">Register</a>
+        </p>
     </div>
 </div>

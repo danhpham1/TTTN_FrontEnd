@@ -24,7 +24,10 @@ export class HomePageComponent implements OnInit {
   watchFemale$: Observable<Array<Product>>;
   test: Array<Product>;
   environment = environment;
-  constructor(private brandService: BrandService, private sliderService: SliderService, private productService: ProductService) { }
+  constructor(private brandService: BrandService,
+    private sliderService: SliderService,
+    private productService: ProductService,
+  ) { }
 
   ngOnInit(): void {
     this.slider$ = this.sliderService.getSlider();

@@ -19,8 +19,12 @@ export const environment = {
   //slider
   APISlider: '/slider',
 
-   //product
-   APIProduct: '/product',
+  //product
+  APIProduct: '/product',
+
+  //user
+  APIUserLogin: '/user/login',
+  APIUserRegister: '/user/register'
 };
 
 /*

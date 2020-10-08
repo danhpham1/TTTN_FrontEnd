@@ -24,7 +24,6 @@ export class ProductDetailPageComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private productService: ProductService,
     private brandService: BrandService,
-    private spiner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
