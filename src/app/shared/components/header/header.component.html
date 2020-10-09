@@ -12,15 +12,15 @@
             </a>
         </div>
         <div class="right-header">
-            <button routerLink="/auth" type="button" class="btn btn-danger login">Đăng Nhập</button>
-            <div class="btn-group" role="group">
-                <button id="btnGroupDrop1" type="button" class="btn btn-danger login dropdown-toggle"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Admin
+            <button *ngIf="user == null" routerLink="/auth" type="button" class="btn btn-danger login">Đăng
+                Nhập</button>
+            <div *ngIf="user" class="btn-group" (click)="dropdown()" role="group">
+                <button id="btnGroupDrop1" type="button" class="btn btn-danger login dropdown-toggle">
+                    {{user.name}}
                 </button>
-                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                    <a class="dropdown-item" href="#">Đơn Hàng</a>
-                    <a class="dropdown-item" href="#">Đăng Xuất</a>
+                <div #dropdownMenu class="dropdown-menu hide">
+                    <button class="dropdown-item text-secondary">Xem Đơn Hàng</button>
+                    <button class="dropdown-item text-secondary" (click)="signup()">Đăng Xuất</button>
                 </div>
             </div>
             |

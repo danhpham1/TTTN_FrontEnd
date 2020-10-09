@@ -15,4 +15,8 @@ export class LocalStorageService {
   getItemLocalStorage(index: string) {
     return this.localStorage.getItem(index);
   }
+
+  removeItemLocalStorage(index: string) {
+    return this.localStorage.removeItem(index);
+  }
 }

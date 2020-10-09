@@ -1,3 +1,5 @@
+import { LocalStorageService } from './../../../core/services/local-storage.service';
+import { Location } from '@angular/common';
 import { BrandService } from './../../services/brand.service';
 import { environment } from './../../../../environments/environment';
 import { Observable } from 'rxjs';
@@ -24,9 +26,13 @@ export class ProductDetailPageComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private productService: ProductService,
     private brandService: BrandService,
+    private location: Location,
+    private localStorageService: LocalStorageService
   ) { }
 
   ngOnInit(): void {
+    this.localStorageService.setItemLocalStorage('returnURL', this.location.path()).subscribe(() => { });
+    this.localStorageService.getItemLocalStorage('returnURL').subscribe(url => { console.log(url) })
     this.route.params.subscribe(params => {
       this.product$ = this.productService.getProductDetail(params['id']).pipe(map(rs => rs['data']));
       this.productRand$ = this.productService.getProductRandom('3').pipe(map(rs => rs.data));

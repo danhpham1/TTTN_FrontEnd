@@ -1,3 +1,4 @@
+import { LocalStorageService } from './../../../core/services/local-storage.service';
 import { ProductService } from './../../services/product.service';
 import { environment } from './../../../../environments/environment';
 import { Slider } from './../../../shared/models/slider';
@@ -9,6 +10,7 @@ import { Brand } from 'src/app/shared/models/brand';
 import { forkJoin } from 'rxjs';
 import { Product } from '../../../shared/models/product';
 import { map } from 'rxjs/operators';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -27,6 +29,8 @@ export class HomePageComponent implements OnInit {
   constructor(private brandService: BrandService,
     private sliderService: SliderService,
     private productService: ProductService,
+    private location: Location,
+    private localStorageService: LocalStorageService
   ) { }
 
   ngOnInit(): void {
@@ -34,6 +38,7 @@ export class HomePageComponent implements OnInit {
     this.brand$ = this.brandService.getBrand();
     this.watchMale$ = this.productService.getProductWithType('nam', '6').pipe(map(rs => rs.data));
     this.watchFemale$ = this.productService.getProductWithType('nu', '6').pipe(map(rs => rs.data));
+    this.localStorageService.setItemLocalStorage('returnURL', this.location.path()).subscribe(() => { });
   }
 
 }

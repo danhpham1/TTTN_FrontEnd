@@ -1,10 +1,11 @@
 import { LocalStorageService } from './../../../core/services/local-storage.service';
 import { MenuService } from './../../services/menu.service';
 import { Menu } from './../../models/menu';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../../models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -14,14 +15,46 @@ import { User } from '../../models/user';
 })
 export class HeaderComponent implements OnInit {
   menu$: Observable<Array<Menu>>;
-  user$: Observable<User>;
-  constructor(private menuService: MenuService, private localStorageService: LocalStorageService) { }
+  user: User;
+  @ViewChild('dropdownMenu') dropDown: ElementRef;
+  constructor(private menuService: MenuService,
+    private localStorageService: LocalStorageService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.menu$ = this.menuService.getMenu().pipe(
       map(data => [...data.data])
     )
-    this.user$ = this.localStorageService.getItemLocalStorage('userInfo');
+    this.localStorageService.getItemLocalStorage('userInfo').subscribe(user => {
+      this.user = user;
+    })
+  }
+
+  dropdown() {
+    if (this.dropDown.nativeElement.classList.contains('hide')) {
+      this.dropDown.nativeElement.classList.remove('hide');
+      this.dropDown.nativeElement.classList.add('show');
+    } else {
+      this.dropDown.nativeElement.classList.remove('show');
+      this.dropDown.nativeElement.classList.add('hide');
+    }
+  }
+
+  signup() {
+    this.localStorageService.removeItemLocalStorage('userInfo').subscribe(rs => {
+      this.localStorageService.getItemLocalStorage('returnURL').subscribe(url => {
+        this.redirectTo(url.toString());
+        this.localStorageService.getItemLocalStorage('userInfo').subscribe(user => {
+          this.user = user;
+        })
+      })
+    })
+  }
+
+  redirectTo(uri: string) {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
+      this.router.navigate([uri]));
   }
 
 }

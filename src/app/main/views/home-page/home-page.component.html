@@ -30,8 +30,10 @@
                 <span class="section-title-main">Đồng hồ nam</span>
                 <b></b>
             </h2>
-            <div class="row justify-content-between">
-                <app-product-card *ngFor="let item of watchMale$|async" [product]="item"></app-product-card>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 mt-3" *ngFor="let item of watchMale$|async">
+                    <app-product-card [product]="item"></app-product-card>
+                </div>
             </div>
             <div class="btn-see-all">
                 <button routerLink="/category/dong-ho-nam">Xem tất cả</button>
@@ -44,8 +46,10 @@
                 <span class="section-title-main">Đồng hồ nữ</span>
                 <b></b>
             </h2>
-            <div class="row justify-content-between">
-                <app-product-card *ngFor="let product of watchFemale$ | async" [product]="product"></app-product-card>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 mt-3" *ngFor="let item of watchMale$|async">
+                    <app-product-card [product]="item"></app-product-card>
+                </div>
             </div>
             <div class="btn-see-all">
                 <button routerLink="/category/dong-ho-nu">Xem tất cả</button>

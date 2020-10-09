@@ -1,6 +1,8 @@
+import { LocalStorageService } from './../../../core/services/local-storage.service';
+import { Location } from '@angular/common';
 import { ProductService } from './../../services/product.service';
 import { Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/shared/models/product';
 import { map } from 'rxjs/operators';
@@ -16,10 +18,16 @@ export class CategoryPageComponent implements OnInit {
   collection = { count: 0, data: [] };
   titleNamePageActive: string;
   brandNamePageActive: string;
-  constructor(private route: ActivatedRoute, private produtService: ProductService) { }
+  constructor(private route: ActivatedRoute,
+    private produtService: ProductService,
+    private location: Location,
+    private localStorageService: LocalStorageService
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
+      this.localStorageService.setItemLocalStorage('returnURL', this.location.path()).subscribe(() => { });
+      this.localStorageService.getItemLocalStorage('returnURL').subscribe(url => { console.log(url) });
       this.route.queryParams.subscribe(querys => {
         let type: string;
         let brand: string;
@@ -48,6 +56,12 @@ export class CategoryPageComponent implements OnInit {
         this.callGetProductService(type, brand);
       })
     })
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    //Add '${implements OnChanges}' to the class.
+
   }
 
   configPagenation() {

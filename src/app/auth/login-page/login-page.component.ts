@@ -18,6 +18,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   loginUser(data) {
+
     this.isPasswordValid = true;
     this.isUsernameValid = true;
 
@@ -32,7 +33,9 @@ export class LoginPageComponent implements OnInit {
       this.authService.loginUser(data.value).subscribe(rs => {
         // console.log(rs['user']);
         this.localStorageService.setItemLocalStorage('userInfo', rs['user']).subscribe(() => { })
-        this.router.navigateByUrl('/home');
+        this.localStorageService.getItemLocalStorage('returnURL').subscribe(url => {
+          this.router.navigateByUrl(url.toString())
+        })
       })
     }
   }
