@@ -1,3 +1,4 @@
+import { CartListPageComponent } from './views/cart-list-page/cart-list-page.component';
 import { ProductDetailPageComponent } from './views/product-detail-page/product-detail-page.component';
 import { CategoryPageComponent } from './views/category-page/category-page.component';
 import { MainComponent } from './main.component';
@@ -22,6 +23,10 @@ const routes: Routes = [
       {
         path: 'product/:id',
         component: ProductDetailPageComponent
+      },
+      {
+        path: 'cart',
+        component: CartListPageComponent
       }
     ]
   }

@@ -2,7 +2,7 @@ import { LocalStorageService } from './../../../core/services/local-storage.serv
 import { Location } from '@angular/common';
 import { ProductService } from './../../services/product.service';
 import { Observable } from 'rxjs';
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/shared/models/product';
 import { map } from 'rxjs/operators';
@@ -18,6 +18,9 @@ export class CategoryPageComponent implements OnInit {
   collection = { count: 0, data: [] };
   titleNamePageActive: string;
   brandNamePageActive: string;
+
+  @Output() addProduct = new EventEmitter();
+
   constructor(private route: ActivatedRoute,
     private produtService: ProductService,
     private location: Location,
@@ -58,10 +61,8 @@ export class CategoryPageComponent implements OnInit {
     })
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
-
+  addToCart(event) {
+    this.addProduct.emit(event);
   }
 
   configPagenation() {

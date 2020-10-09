@@ -24,8 +24,11 @@
                 </div>
             </div>
             |
-            <button type="button" class="btn btn-danger cart">Giỏ Hàng/0 Sản Phẩm <i
-                    class="fa fa-cart-plus"></i></button>
+            <ng-container *ngIf="cartItems">
+                <button type="button" routerLink="/cart" class="btn btn-danger cart">Giỏ
+                    Hàng/{{(cartItems["items"].length > 0)?cartItems["items"].length:0}}
+                    Sản Phẩm <i class="fa fa-cart-plus"></i></button>
+            </ng-container>
         </div>
     </div>
     <nav class="wide-nav">
@@ -65,11 +68,11 @@
                         </ul>
                     </ng-container>
                     <ng-container *ngIf="menu.title == 'Tin Tức'">
-                        <a routerLink="/tin-tuc">{{menu.title}}<i class="fa fa-angle-down text-secondary"></i></a>
+                        <a routerLink="/tin-tuc">{{menu.title}}</a>
                         <!-- sub nav -->
                     </ng-container>
                     <ng-container *ngIf="menu.title == 'Liên Hệ'">
-                        <a routerLink="/lien-he">{{menu.title}}<i class="fa fa-angle-down text-secondary"></i></a>
+                        <a routerLink="/lien-he">{{menu.title}}</a>
                         <!-- sub nav -->
                     </ng-container>
                 </li>

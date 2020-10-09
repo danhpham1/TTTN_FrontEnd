@@ -36,8 +36,8 @@
                         <p>Chính sách bảo hành: <b>{{product.guarantee}} Năm</b></p>
                     </div>
                     <div class="product-describe-button">
-                        <button>Thêm vào giỏ hàng</button>
-                        <button class="ml-1">Mua ngay</button>
+                        <button (click)="addToCart(product)">Thêm vào giỏ hàng</button>
+                        <button (click)="buy(product)" class="ml-1">Mua ngay</button>
                     </div>
                 </div>
             </div>

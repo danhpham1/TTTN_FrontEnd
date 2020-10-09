@@ -4,7 +4,7 @@ import { environment } from './../../../../environments/environment';
 import { Slider } from './../../../shared/models/slider';
 import { SliderService } from './../../services/slider.service';
 import { BrandService } from './../../services/brand.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Brand } from 'src/app/shared/models/brand';
 import { forkJoin } from 'rxjs';
@@ -26,6 +26,9 @@ export class HomePageComponent implements OnInit {
   watchFemale$: Observable<Array<Product>>;
   test: Array<Product>;
   environment = environment;
+
+  @Output() addProduct = new EventEmitter();
+
   constructor(private brandService: BrandService,
     private sliderService: SliderService,
     private productService: ProductService,
@@ -39,6 +42,10 @@ export class HomePageComponent implements OnInit {
     this.watchMale$ = this.productService.getProductWithType('nam', '6').pipe(map(rs => rs.data));
     this.watchFemale$ = this.productService.getProductWithType('nu', '6').pipe(map(rs => rs.data));
     this.localStorageService.setItemLocalStorage('returnURL', this.location.path()).subscribe(() => { });
+    this.localStorageService.getItemLocalStorage('token').subscribe(token => { console.log(token) })
   }
 
+  addToCart(event) {
+    this.addProduct.emit(event);
+  }
 }

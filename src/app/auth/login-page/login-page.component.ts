@@ -32,7 +32,8 @@ export class LoginPageComponent implements OnInit {
     if (this.isPasswordValid && this.isUsernameValid) {
       this.authService.loginUser(data.value).subscribe(rs => {
         // console.log(rs['user']);
-        this.localStorageService.setItemLocalStorage('userInfo', rs['user']).subscribe(() => { })
+        this.localStorageService.setItemLocalStorage('userInfo', rs['user']).subscribe(() => { });
+        this.localStorageService.setItemLocalStorage('token', rs['token']).subscribe(() => { });
         this.localStorageService.getItemLocalStorage('returnURL').subscribe(url => {
           this.router.navigateByUrl(url.toString())
         })

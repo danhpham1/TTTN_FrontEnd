@@ -1,0 +1,3 @@
+main .product-describe-button button:focus{
+    outline: none;
+}

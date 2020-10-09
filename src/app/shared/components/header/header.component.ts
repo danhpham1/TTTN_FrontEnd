@@ -1,7 +1,7 @@
 import { LocalStorageService } from './../../../core/services/local-storage.service';
 import { MenuService } from './../../services/menu.service';
 import { Menu } from './../../models/menu';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../../models/user';
@@ -16,6 +16,8 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   menu$: Observable<Array<Menu>>;
   user: User;
+  @Input() cartItems: any
+
   @ViewChild('dropdownMenu') dropDown: ElementRef;
   constructor(private menuService: MenuService,
     private localStorageService: LocalStorageService,
@@ -42,6 +44,7 @@ export class HeaderComponent implements OnInit {
   }
 
   signup() {
+    this.localStorageService.removeItemLocalStorage('token').subscribe(() => { });
     this.localStorageService.removeItemLocalStorage('userInfo').subscribe(rs => {
       this.localStorageService.getItemLocalStorage('returnURL').subscribe(url => {
         this.redirectTo(url.toString());
