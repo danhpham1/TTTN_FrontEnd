@@ -1,5 +1,5 @@
 import { environment } from './../../../../environments/environment';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/shared/models/product';
 
 @Component({
@@ -9,6 +9,8 @@ import { Product } from 'src/app/shared/models/product';
 })
 export class ProductCardComponent implements OnInit {
   @Input() product: Product;
+  @Output() addProduct = new EventEmitter();
+
   environment = environment;
   constructor() { }
 
@@ -16,4 +18,7 @@ export class ProductCardComponent implements OnInit {
 
   }
 
+  addToCart() {
+    this.addProduct.emit(this.product);
+  }
 }
