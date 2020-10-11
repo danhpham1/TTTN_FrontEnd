@@ -1,1 +1,52 @@
-<p>cart-list-page works!</p>
+<main>
+    <div class="cart container">
+        <div class="cart-title">
+            <h4>Giỏ hàng</h4>
+        </div>
+        <div class="cart-list">
+            <div class="cart-item">
+                <table class="table table-striped" *ngIf="cartItems.length >= 1;else noProduct">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 45%;">Tên Sản Phẩm</th>
+                            <th scope="col" style="width: 15%;">Số Lượng</th>
+                            <th scope="col" style="width: 25%;">Giá</th>
+                            <th scope="col" style="width: 15%;">Xóa Sản Phẩm</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of cartItems">
+                            <td>
+                                <img src="{{environment.EndPointAPI}}/img/product/{{item.logo}}" alt="">
+                                <a href="#">{{item.name}}</a>
+                            </td>
+                            <td>
+                                <input type="number" value="{{item.amout}}" min="1">
+                            </td>
+                            <td>
+                                {{item.price | currency:"VND":"symbol"}}
+                            </td>
+                            <td>
+                                <i (click)="deleteProductInCart(item)" class="fa fa-trash fa-2x"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ng-template #noProduct>
+                    <div class="w-100">
+                        <p class="text-center pt-3 text-secondary text-uppercase">Not Product In Cart</p>
+                    </div>
+                </ng-template>
+
+                <hr class="mt-4 mb-4">
+                <div class="total-cart d-flex justify-content-end">
+                    <p class="font-weight-bold"><span class="text-secondary">Thành Tiền:</span> 251.000đ</p>
+                </div>
+                <div class="button-cart d-flex justify-content-end">
+                    <button type="button" class="btn btn-danger"><span class="font-weight-bold">Tiến Hành Đặt
+                            Hàng</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

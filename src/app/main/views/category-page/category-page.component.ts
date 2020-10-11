@@ -29,9 +29,9 @@ export class CategoryPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.localStorageService.setItemLocalStorage('returnURL', this.location.path()).subscribe(() => { });
-      this.localStorageService.getItemLocalStorage('returnURL').subscribe(url => { console.log(url) });
       this.route.queryParams.subscribe(querys => {
+        this.localStorageService.setItemLocalStorage('returnURL', this.location.path()).subscribe(() => { });
+        this.localStorageService.getItemLocalStorage('returnURL').subscribe(url => { console.log(url) });
         let type: string;
         let brand: string;
         if (params["name"] == 'all') {

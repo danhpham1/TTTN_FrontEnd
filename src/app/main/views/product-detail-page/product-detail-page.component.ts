@@ -34,9 +34,9 @@ export class ProductDetailPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.localStorageService.setItemLocalStorage('returnURL', this.location.path()).subscribe(() => { });
     this.route.params.subscribe(params => {
       this.product$ = this.productService.getProductDetail(params['id']).pipe(map(rs => rs['data']));
+      this.localStorageService.setItemLocalStorage('returnURL', this.location.path()).subscribe(() => { });
       this.productRand$ = this.productService.getProductRandom('3').pipe(map(rs => rs.data));
       this.productService.getProductDetail(params['id']).pipe(map(rs => rs['data'])).subscribe(data => {
         this.brand$ = this.brandService.getBrand().pipe(

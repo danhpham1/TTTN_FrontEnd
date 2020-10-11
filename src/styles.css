@@ -7,6 +7,11 @@
     overflow: hidden; */
 }
 
+body{
+    min-height: 100vh;
+    position: relative;
+}
+
 
 ul{
     margin: 0 !important;
@@ -571,6 +576,13 @@ main .product-info .product-data .product-data-guarantee{
     text-align: left;
     line-height: 20px;
 }
+
+footer{
+    position: absolute;
+    width: 100%;
+    bottom: -100px;
+}
+
 /* button scroll */
 
 .scroll-btn button{

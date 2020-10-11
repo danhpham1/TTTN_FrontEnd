@@ -1,3 +1,4 @@
+import { TokenExpiredService } from './../../../core/services/token-expired.service';
 import { LocalStorageService } from './../../../core/services/local-storage.service';
 import { ProductService } from './../../services/product.service';
 import { environment } from './../../../../environments/environment';
@@ -7,10 +8,11 @@ import { BrandService } from './../../services/brand.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Brand } from 'src/app/shared/models/brand';
-import { forkJoin } from 'rxjs';
 import { Product } from '../../../shared/models/product';
 import { map } from 'rxjs/operators';
 import { Location } from '@angular/common';
+
+
 
 
 @Component({
@@ -33,7 +35,8 @@ export class HomePageComponent implements OnInit {
     private sliderService: SliderService,
     private productService: ProductService,
     private location: Location,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private tokenExpiredService: TokenExpiredService
   ) { }
 
   ngOnInit(): void {
@@ -42,7 +45,13 @@ export class HomePageComponent implements OnInit {
     this.watchMale$ = this.productService.getProductWithType('nam', '6').pipe(map(rs => rs.data));
     this.watchFemale$ = this.productService.getProductWithType('nu', '6').pipe(map(rs => rs.data));
     this.localStorageService.setItemLocalStorage('returnURL', this.location.path()).subscribe(() => { });
-    this.localStorageService.getItemLocalStorage('token').subscribe(token => { console.log(token) })
+
+    this.localStorageService.getItemLocalStorage('token').subscribe(token => {
+      if (token && this.tokenExpiredService.checkTokenExpired(token)) {
+        this.localStorageService.removeItemLocalStorage('userInfo');
+        this.localStorageService.removeItemLocalStorage('token');
+      }
+    })
   }
 
   addToCart(event) {

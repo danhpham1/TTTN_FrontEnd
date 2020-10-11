@@ -2,9 +2,9 @@ export function scrollTop($) {
     $(document).ready(function () {
         $('.scroll-btn').hide()
         $(window).scroll(function () {
-            $('header').addClass('header-fix');
             let currentHeight = $(window).scrollTop();
-            if (currentHeight >= 100) {
+            if (currentHeight >= 150) {
+                $('header').addClass('header-fix');
                 $('.scroll-btn').fadeIn("slow");
             } else {
                 $('.scroll-btn').fadeOut("slow");

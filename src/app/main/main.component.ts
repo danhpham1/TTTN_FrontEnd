@@ -23,6 +23,11 @@ export class MainComponent implements OnInit {
   onActivate(componentReference) {
     if (componentReference instanceof CartListPageComponent) {
       componentReference.cartItems = this.cartItem.items;
+      componentReference.deleteProduct.subscribe(item => {
+        let newCart = this.cartItem.items.filter(el => el.idProduct != item.idProduct);
+        this.cartItem.items = newCart;
+        console.log(this.cartItem);
+      })
     } else {
       componentReference.addProduct.subscribe((data) => {
         let productTemp = this.cartItem.items.find(el => el.idProduct == data._id);
@@ -38,7 +43,8 @@ export class MainComponent implements OnInit {
             idProduct: data._id,
             name: data.title,
             price: data.price,
-            amout: 1
+            amout: 1,
+            logo: data.logo
           })
         }
         // this.cart$.next(this.cartItem.items);
