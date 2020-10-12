@@ -35,9 +35,15 @@ export class LoginPageComponent implements OnInit {
         this.localStorageService.setItemLocalStorage('userInfo', rs['user']).subscribe(() => { });
         this.localStorageService.setItemLocalStorage('token', rs['token']).subscribe(() => { });
         this.localStorageService.getItemLocalStorage('returnURL').subscribe(url => {
-          this.router.navigateByUrl(url.toString());
+          // this.router.navigateByUrl(url.toString());
+          this.redirectTo(url.toString());
         })
       })
     }
+  }
+
+  redirectTo(uri: string) {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
+      this.router.navigate([uri]));
   }
 }

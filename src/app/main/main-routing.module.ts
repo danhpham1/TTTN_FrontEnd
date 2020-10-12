@@ -1,3 +1,5 @@
+import { GuardOrderGuard } from './../core/guard/guard-order.guard';
+import { OrderPageComponent } from './views/order-page/order-page.component';
 import { CartListPageComponent } from './views/cart-list-page/cart-list-page.component';
 import { ProductDetailPageComponent } from './views/product-detail-page/product-detail-page.component';
 import { CategoryPageComponent } from './views/category-page/category-page.component';
@@ -27,6 +29,11 @@ const routes: Routes = [
       {
         path: 'cart',
         component: CartListPageComponent
+      },
+      {
+        path: 'order',
+        component: OrderPageComponent,
+        canActivate: [GuardOrderGuard]
       }
     ]
   }

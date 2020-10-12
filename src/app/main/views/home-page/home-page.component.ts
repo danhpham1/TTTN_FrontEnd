@@ -45,11 +45,11 @@ export class HomePageComponent implements OnInit {
     this.watchMale$ = this.productService.getProductWithType('nam', '6').pipe(map(rs => rs.data));
     this.watchFemale$ = this.productService.getProductWithType('nu', '6').pipe(map(rs => rs.data));
     this.localStorageService.setItemLocalStorage('returnURL', this.location.path()).subscribe(() => { });
-
     this.localStorageService.getItemLocalStorage('token').subscribe(token => {
       if (token && this.tokenExpiredService.checkTokenExpired(token)) {
-        this.localStorageService.removeItemLocalStorage('userInfo');
-        this.localStorageService.removeItemLocalStorage('token');
+        this.localStorageService.removeItemLocalStorage('userInfo').subscribe(() => { });
+        this.localStorageService.removeItemLocalStorage('token').subscribe(() => { });
+        this.localStorageService.removeItemLocalStorage('cart').subscribe(() => { });
       }
     })
   }

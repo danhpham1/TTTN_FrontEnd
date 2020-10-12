@@ -6,6 +6,7 @@ import { Component, EventEmitter, OnInit, Output, SimpleChanges } from '@angular
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/shared/models/product';
 import { map } from 'rxjs/operators';
+import { TokenExpiredService } from 'src/app/core/services/token-expired.service';
 
 @Component({
   selector: 'app-category-page',
@@ -24,7 +25,8 @@ export class CategoryPageComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private produtService: ProductService,
     private location: Location,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private tokenExpiredService: TokenExpiredService
   ) { }
 
   ngOnInit(): void {
@@ -59,6 +61,7 @@ export class CategoryPageComponent implements OnInit {
         this.callGetProductService(type, brand);
       })
     })
+    this.signup();
   }
 
   addToCart(event) {
@@ -90,6 +93,15 @@ export class CategoryPageComponent implements OnInit {
   callGetProductService(type?: string, brand?: string, size?: string) {
     this.product$ = this.produtService.getProductWithType(type, brand, size).pipe(map(rs => rs.data.reverse()));
     this.configPagenation();
+  }
+
+  signup() {
+    this.localStorageService.getItemLocalStorage('token').subscribe(token => {
+      if (token && this.tokenExpiredService.checkTokenExpired(token)) {
+        this.localStorageService.removeItemLocalStorage('userInfo');
+        this.localStorageService.removeItemLocalStorage('token');
+      }
+    })
   }
 
 }

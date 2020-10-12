@@ -1,5 +1,7 @@
+import { Location } from '@angular/common';
+import { LocalStorageService } from './../../../core/services/local-storage.service';
 import { environment } from './../../../../environments/environment';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { CartItem } from 'src/app/shared/models/cart';
 
 @Component({
@@ -8,20 +10,49 @@ import { CartItem } from 'src/app/shared/models/cart';
   styleUrls: ['./cart-list-page.component.css']
 })
 export class CartListPageComponent implements OnInit {
-  cartItems: Array<CartItem>;
+  cartItems: Array<any>;
   environment = environment;
+  totalInCart: any = 0;
 
   @Output() deleteProduct = new EventEmitter();
+  @Output() changeAmoutProduct = new EventEmitter();
 
-  constructor() { }
+  constructor(
+    private localStorageService: LocalStorageService,
+    private location: Location,
+  ) { }
 
   ngOnInit(): void {
-    console.log(this.cartItems);
+    this.localStorageService.setItemLocalStorage('returnURL', this.location.path()).subscribe(() => { });
+    // console.log(this.location.path());
+    this.getTotalCart();
   }
 
   deleteProductInCart(item) {
     this.cartItems = this.cartItems.filter(el => el.idProduct != item.idProduct);
+    this.getTotalCart()
     this.deleteProduct.emit(item);
+  }
+
+  getTotalCart() {
+    this.localStorageService.getItemLocalStorage('cart').subscribe(cartItems => {
+      if (this.cartItems) {
+        this.totalInCart = this.cartItems.reduce((total, el) => {
+          return total += (el.amout * el.price)
+        }, 0)
+      }
+    })
+  }
+
+  changeAmount(event, idProduct) {
+    this.cartItems.map(el => {
+      if (el.idProduct == idProduct) {
+        return el.amout = event.target.value
+      }
+    })
+    this.localStorageService.setItemLocalStorage('cart', { items: this.cartItems }).subscribe(() => { });
+    this.getTotalCart();
+    this.changeAmoutProduct.emit({ amout: event.target.value, id: idProduct });
   }
 
 

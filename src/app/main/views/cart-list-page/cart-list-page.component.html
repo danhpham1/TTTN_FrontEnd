@@ -1,4 +1,4 @@
-<main>
+<main *ngIf="cartItems">
     <div class="cart container">
         <div class="cart-title">
             <h4>Giỏ hàng</h4>
@@ -21,7 +21,8 @@
                                 <a href="#">{{item.name}}</a>
                             </td>
                             <td>
-                                <input type="number" value="{{item.amout}}" min="1">
+                                <input (change)="changeAmount($event,item.idProduct)" type="number"
+                                    [(value)]="item.amout" min="1">
                             </td>
                             <td>
                                 {{item.price | currency:"VND":"symbol"}}
@@ -34,17 +35,21 @@
                 </table>
                 <ng-template #noProduct>
                     <div class="w-100">
-                        <p class="text-center pt-3 text-secondary text-uppercase">Not Product In Cart</p>
+                        <p class="text-center pt-3 text-secondary text-uppercase">Không có sản phẩm trong giỏ hàng</p>
                     </div>
                 </ng-template>
 
                 <hr class="mt-4 mb-4">
                 <div class="total-cart d-flex justify-content-end">
-                    <p class="font-weight-bold"><span class="text-secondary">Thành Tiền:</span> 251.000đ</p>
+                    <p class="font-weight-bold"><span class="text-secondary">Thành Tiền:</span>
+                        {{totalInCart|currency:"VND":"symbol"}} </p>
                 </div>
                 <div class="button-cart d-flex justify-content-end">
-                    <button type="button" class="btn btn-danger"><span class="font-weight-bold">Tiến Hành Đặt
-                            Hàng</span></button>
+                    <button routerLink="/order" type="button" class="btn btn-danger"
+                        [disabled]="(cartItems.length == 0 )">
+                        <span class="font-weight-bold">Tiến Hành Đặt
+                            Hàng</span>
+                    </button>
                 </div>
             </div>
         </div>

@@ -11,6 +11,7 @@ import { Product } from 'src/app/shared/models/product';
 import { find, map } from 'rxjs/operators';
 import { BrandData } from 'src/app/shared/models/brand';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { TokenExpiredService } from 'src/app/core/services/token-expired.service';
 declare var $: any
 
 @Component({
@@ -30,7 +31,8 @@ export class ProductDetailPageComponent implements OnInit {
     private brandService: BrandService,
     private location: Location,
     private localStorageService: LocalStorageService,
-    private router: Router
+    private router: Router,
+    private tokenExpiredService: TokenExpiredService
   ) { }
 
   ngOnInit(): void {
@@ -54,5 +56,14 @@ export class ProductDetailPageComponent implements OnInit {
   buy(product) {
     this.addProduct.emit(product);
     this.router.navigate(['cart']);
+  }
+
+  signup() {
+    this.localStorageService.getItemLocalStorage('token').subscribe(token => {
+      if (token && this.tokenExpiredService.checkTokenExpired(token)) {
+        this.localStorageService.removeItemLocalStorage('userInfo');
+        this.localStorageService.removeItemLocalStorage('token');
+      }
+    })
   }
 }

@@ -3,7 +3,7 @@ export function scrollTop($) {
         $('.scroll-btn').hide()
         $(window).scroll(function () {
             let currentHeight = $(window).scrollTop();
-            if (currentHeight >= 150) {
+            if (currentHeight >= 300) {
                 $('header').addClass('header-fix');
                 $('.scroll-btn').fadeIn("slow");
             } else {

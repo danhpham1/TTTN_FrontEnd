@@ -9,6 +9,7 @@ import { HomePageComponent } from './views/home-page/home-page.component';
 import { CategoryPageComponent } from './views/category-page/category-page.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { CartListPageComponent } from './views/cart-list-page/cart-list-page.component';
+import { OrderPageComponent } from './views/order-page/order-page.component';
 
 
 
@@ -21,6 +22,7 @@ import { CartListPageComponent } from './views/cart-list-page/cart-list-page.com
     ProductDetailPageComponent,
     ProductCardComponent,
     CartListPageComponent,
+    OrderPageComponent,
   ],
   imports: [
     CommonModule,

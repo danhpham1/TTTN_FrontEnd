@@ -1,8 +1,12 @@
+import { LocalStorageService } from './../core/services/local-storage.service';
+import { ProductDetailPageComponent } from './views/product-detail-page/product-detail-page.component';
+import { CategoryPageComponent } from './views/category-page/category-page.component';
 import { CartListPageComponent } from './views/cart-list-page/cart-list-page.component';
 import { CartItem } from './../shared/models/cart';
 import { Component, Input, OnInit } from '@angular/core';
 import { Cart } from '../shared/models/cart';
 import { Subject } from 'rxjs';
+import { HomePageComponent } from './views/home-page/home-page.component';
 
 @Component({
   selector: 'app-main',
@@ -10,25 +14,49 @@ import { Subject } from 'rxjs';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  cartItem: Cart = {
+  cartItem: any = {
     items: [],
   }
   // cart$ = new Subject<Array<CartItem>>();
 
-  constructor() { }
+  constructor(
+    private localStorageService: LocalStorageService
+  ) { }
 
   ngOnInit(): void {
+    this.localStorageService.getItemLocalStorage('cart').subscribe(cart => {
+      if (cart) {
+        this.cartItem = cart
+      } else {
+        this.localStorageService.setItemLocalStorage('cart', this.cartItem).subscribe(() => { });
+      }
+    })
   }
 
   onActivate(componentReference) {
     if (componentReference instanceof CartListPageComponent) {
-      componentReference.cartItems = this.cartItem.items;
+      this.localStorageService.getItemLocalStorage('cart').subscribe((rs) => {
+        // console.log(rs['items']);
+        componentReference.cartItems = rs['items'];
+      })
       componentReference.deleteProduct.subscribe(item => {
         let newCart = this.cartItem.items.filter(el => el.idProduct != item.idProduct);
         this.cartItem.items = newCart;
-        console.log(this.cartItem);
+        this.localStorageService.setItemLocalStorage('cart', this.cartItem).subscribe(() => { });
       })
-    } else {
+      // componentReference.changeAmoutProduct.subscribe(item => {
+      //   this.cartItem.items.map(el => {
+      //     if (el.idProduct == item.id) {
+      //       return el.amout = item.amount
+      //     }
+      //   })
+      // })
+    }
+
+    if (componentReference instanceof HomePageComponent ||
+      componentReference instanceof CategoryPageComponent ||
+      componentReference instanceof ProductDetailPageComponent
+    ) {
       componentReference.addProduct.subscribe((data) => {
         let productTemp = this.cartItem.items.find(el => el.idProduct == data._id);
         if (productTemp) {
@@ -48,7 +76,8 @@ export class MainComponent implements OnInit {
           })
         }
         // this.cart$.next(this.cartItem.items);
-        console.log(this.cartItem);
+        // console.log(this.cartItem);
+        this.localStorageService.setItemLocalStorage('cart', this.cartItem).subscribe(() => { });
       })
     }
   }
