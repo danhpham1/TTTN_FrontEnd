@@ -36,8 +36,11 @@ export class MainComponent implements OnInit {
   onActivate(componentReference) {
     if (componentReference instanceof CartListPageComponent) {
       this.localStorageService.getItemLocalStorage('cart').subscribe((rs) => {
-        // console.log(rs['items']);
-        componentReference.cartItems = rs['items'];
+        if (rs) {
+          componentReference.cartItems = rs['items'];
+        } else {
+          componentReference.cartItems = this.cartItem;
+        }
       })
       componentReference.deleteProduct.subscribe(item => {
         let newCart = this.cartItem.items.filter(el => el.idProduct != item.idProduct);

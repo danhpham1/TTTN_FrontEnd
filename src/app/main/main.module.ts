@@ -1,6 +1,7 @@
 import { ProductDetailPageComponent } from './views/product-detail-page/product-detail-page.component';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { MainRoutingModule } from './main-routing.module';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -27,7 +28,8 @@ import { OrderPageComponent } from './views/order-page/order-page.component';
   imports: [
     CommonModule,
     MainRoutingModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormsModule
   ],
 })
 export class MainModule { }

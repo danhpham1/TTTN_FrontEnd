@@ -1,0 +1,70 @@
+main .order .order-link a {
+    text-decoration: none;
+    font-weight: 500;
+    color: red !important;
+}
+
+main .order .order-link > span{
+    font-weight: 500;
+}
+
+main .row .col-left{
+    border-right: 1px solid #e1e1e1;
+    height: 95vh;
+}
+
+main .col-right{
+    background-color: #e1e1e1 ;
+    height: 95vh;
+}
+
+main .order-sumary-item .order-item-title img{
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 15px;
+}
+
+main .order-sumary-item .order-item-title{
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 80%;
+    height: auto;
+}
+
+main .order-sumary-item .order-item-title span{
+    width: 25px;
+    height: 25px;
+    background-color: rgba(114,114,114,0.9);
+    text-align: center;
+    /* border: 1px solid; */
+    border-radius: 50%;
+    position: absolute;
+    left: 47px;
+    top: 0px;
+    z-index: 10;
+}
+
+main .order-sumary-item .order-item-title p{
+    padding-left: 20px;
+    margin-bottom: 0px !important;
+}
+
+main .order-sumary-item{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+main .order-total{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+}
+
+main .order-total p{
+    font-size: 1.5rem;
+    font-weight: 500;
+
+}
