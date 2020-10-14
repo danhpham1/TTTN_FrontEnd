@@ -1,3 +1,4 @@
+import { TokenExpiredService } from './../core/services/token-expired.service';
 import { LocalStorageService } from './../core/services/local-storage.service';
 import { ProductDetailPageComponent } from './views/product-detail-page/product-detail-page.component';
 import { CategoryPageComponent } from './views/category-page/category-page.component';
@@ -20,7 +21,8 @@ export class MainComponent implements OnInit {
   // cart$ = new Subject<Array<CartItem>>();
 
   constructor(
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private tokenExpiredService: TokenExpiredService
   ) { }
 
   ngOnInit(): void {
@@ -29,6 +31,13 @@ export class MainComponent implements OnInit {
         this.cartItem = cart
       } else {
         this.localStorageService.setItemLocalStorage('cart', this.cartItem).subscribe(() => { });
+      }
+    })
+    this.localStorageService.getItemLocalStorage('token').subscribe(token => {
+      if (token && !this.tokenExpiredService.checkTokenExpired(token)) {
+        this.localStorageService.removeItemLocalStorage('userInfo').subscribe(() => { });
+        this.localStorageService.removeItemLocalStorage('token').subscribe(() => { });
+        this.localStorageService.removeItemLocalStorage('cart').subscribe(() => { });
       }
     })
   }

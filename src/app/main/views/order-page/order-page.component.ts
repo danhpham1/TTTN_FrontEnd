@@ -1,8 +1,10 @@
+import { OrderService } from './../../services/order.service';
 import { environment } from './../../../../environments/environment';
 import { Observable } from 'rxjs';
 import { LocalStorageService } from './../../../core/services/local-storage.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/shared/models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order-page',
@@ -18,7 +20,9 @@ export class OrderPageComponent implements OnInit {
   isConfirm: boolean;
 
   constructor(
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private orderService: OrderService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -45,7 +49,13 @@ export class OrderPageComponent implements OnInit {
           ...rs,
           totalInCart: this.getTotalInCart(rs.items)
         }
-        console.log(orderData);
+        this.localStorageService.getItemLocalStorage('token').subscribe(token => {
+          this.orderService.postOrder(orderData, token).subscribe(rs => {
+            if (rs["success"] == true) {
+              this.router.navigateByUrl('/home');
+            }
+          })
+        })
       })
     } else {
       this.isConfirm = false;

@@ -24,7 +24,10 @@ export const environment = {
 
   //user
   APIUserLogin: '/user/login',
-  APIUserRegister: '/user/register'
+  APIUserRegister: '/user/register',
+
+  //order
+  APICreateOrder: '/order'
 };
 
 /*
