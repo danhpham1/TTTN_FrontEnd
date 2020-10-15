@@ -1,3 +1,4 @@
+import { ToastrHelpService } from './../services/toastr-help.service';
 import { Injectable } from '@angular/core';
 import {
   HttpRequest,
@@ -9,13 +10,19 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { NgxSpinnerService } from 'ngx-spinner';
+
+
 import { Router } from '@angular/router';
 
 
 @Injectable()
 export class HttpconfigInterceptor implements HttpInterceptor {
 
-  constructor(private spiner: NgxSpinnerService, private roter: Router) { }
+  constructor(
+    private spiner: NgxSpinnerService,
+    private roter: Router,
+    private toastrHelpService: ToastrHelpService
+  ) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     this.spiner.show();
@@ -31,10 +38,11 @@ export class HttpconfigInterceptor implements HttpInterceptor {
         this.spiner.hide();
         switch (err.status) {
           case 401:
+            this.toastrHelpService.showToastrError('username hoặc password không đúng', 'Đăng nhập');
             this.roter.navigateByUrl('auth/login');
             return throwError(err);
           case 503:
-            // console.log("test");
+            this.toastrHelpService.showToastrError('Đăng ký không thành công(username bị trùng)', 'Đăng ký');
             this.roter.navigateByUrl('auth/register');
             return throwError(err);
           default:

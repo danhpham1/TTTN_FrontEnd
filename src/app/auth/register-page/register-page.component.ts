@@ -1,3 +1,4 @@
+import { ToastrHelpService } from './../../core/services/toastr-help.service';
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -16,7 +17,11 @@ export class RegisterPageComponent implements OnInit {
   isValidUsername: boolean = true;
   isValidPassword: boolean = true;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private toastrHelpService: ToastrHelpService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -40,6 +45,7 @@ export class RegisterPageComponent implements OnInit {
       // console.log(data.value);
       this.authService.createUser(data.value)
         .subscribe(rs => {
+          this.toastrHelpService.showToastrSuccess("Đăng ký thành công", 'Đăng ký')
           this.router.navigateByUrl('auth/login');
         })
     }

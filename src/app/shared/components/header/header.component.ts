@@ -1,3 +1,4 @@
+import { ToastrHelpService } from './../../../core/services/toastr-help.service';
 import { LocalStorageService } from './../../../core/services/local-storage.service';
 import { MenuService } from './../../services/menu.service';
 import { Menu } from './../../models/menu';
@@ -21,7 +22,8 @@ export class HeaderComponent implements OnInit {
   @ViewChild('dropdownMenu') dropDown: ElementRef;
   constructor(private menuService: MenuService,
     private localStorageService: LocalStorageService,
-    private router: Router
+    private router: Router,
+    private toastrHelpService: ToastrHelpService
   ) { }
 
   ngOnInit(): void {
@@ -44,6 +46,7 @@ export class HeaderComponent implements OnInit {
   }
 
   signup() {
+    this.toastrHelpService.showToastrSuccess('Đăng Xuất Thành Công', 'Đăng Xuất')
     this.localStorageService.removeItemLocalStorage('token').subscribe(() => { });
     this.localStorageService.removeItemLocalStorage('userInfo').subscribe(rs => {
       this.localStorageService.getItemLocalStorage('returnURL').subscribe(url => {

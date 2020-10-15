@@ -1,3 +1,4 @@
+import { ToastrHelpService } from './../../../core/services/toastr-help.service';
 import { OrderService } from './../../services/order.service';
 import { environment } from './../../../../environments/environment';
 import { Observable } from 'rxjs';
@@ -22,7 +23,8 @@ export class OrderPageComponent implements OnInit {
   constructor(
     private localStorageService: LocalStorageService,
     private orderService: OrderService,
-    private router: Router
+    private router: Router,
+    private toastrHelpService: ToastrHelpService
   ) { }
 
   ngOnInit(): void {
@@ -52,7 +54,12 @@ export class OrderPageComponent implements OnInit {
         this.localStorageService.getItemLocalStorage('token').subscribe(token => {
           this.orderService.postOrder(orderData, token).subscribe(rs => {
             if (rs["success"] == true) {
-              this.router.navigateByUrl('/home');
+              this.toastrHelpService.showToastrSuccess("Đặt hàng thành công", "Đơn đặt hàng");
+              this.localStorageService.setItemLocalStorage("cart", {
+                items: [],
+              }).subscribe();
+              // this.router.navigateByUrl('/home');
+              window.location.href = '/home'
             }
           })
         })

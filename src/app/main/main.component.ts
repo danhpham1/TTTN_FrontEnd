@@ -1,3 +1,4 @@
+import { ToastrHelpService } from './../core/services/toastr-help.service';
 import { TokenExpiredService } from './../core/services/token-expired.service';
 import { LocalStorageService } from './../core/services/local-storage.service';
 import { ProductDetailPageComponent } from './views/product-detail-page/product-detail-page.component';
@@ -22,7 +23,8 @@ export class MainComponent implements OnInit {
 
   constructor(
     private localStorageService: LocalStorageService,
-    private tokenExpiredService: TokenExpiredService
+    private tokenExpiredService: TokenExpiredService,
+    private toastrHelpService: ToastrHelpService
   ) { }
 
   ngOnInit(): void {
@@ -52,6 +54,7 @@ export class MainComponent implements OnInit {
         }
       })
       componentReference.deleteProduct.subscribe(item => {
+        this.toastrHelpService.showToastrWarning("Xóa sản phẩm thành công", 'Giỏ hàng');
         let newCart = this.cartItem.items.filter(el => el.idProduct != item.idProduct);
         this.cartItem.items = newCart;
         this.localStorageService.setItemLocalStorage('cart', this.cartItem).subscribe(() => { });
@@ -70,6 +73,7 @@ export class MainComponent implements OnInit {
       componentReference instanceof ProductDetailPageComponent
     ) {
       componentReference.addProduct.subscribe((data) => {
+        this.toastrHelpService.showToastrWarning("Thêm giỏ hàng thành công", "Giỏ hàng");
         let productTemp = this.cartItem.items.find(el => el.idProduct == data._id);
         if (productTemp) {
           this.cartItem.items.map(el => {

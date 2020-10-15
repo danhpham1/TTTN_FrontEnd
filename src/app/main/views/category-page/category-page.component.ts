@@ -97,7 +97,7 @@ export class CategoryPageComponent implements OnInit {
 
   signup() {
     this.localStorageService.getItemLocalStorage('token').subscribe(token => {
-      if (token && this.tokenExpiredService.checkTokenExpired(token)) {
+      if (token && !this.tokenExpiredService.checkTokenExpired(token)) {
         this.localStorageService.removeItemLocalStorage('userInfo');
         this.localStorageService.removeItemLocalStorage('token');
       }

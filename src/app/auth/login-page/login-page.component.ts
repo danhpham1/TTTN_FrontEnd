@@ -1,3 +1,4 @@
+import { ToastrHelpService } from './../../core/services/toastr-help.service';
 import { LocalStorageService } from './../../core/services/local-storage.service';
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,7 +13,12 @@ import { Router } from '@angular/router';
 export class LoginPageComponent implements OnInit {
   isUsernameValid: boolean = true;
   isPasswordValid: boolean = true;
-  constructor(private authService: AuthService, private router: Router, private localStorageService: LocalStorageService) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private localStorageService: LocalStorageService,
+    private toastrHelpService: ToastrHelpService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -31,12 +37,12 @@ export class LoginPageComponent implements OnInit {
 
     if (this.isPasswordValid && this.isUsernameValid) {
       this.authService.loginUser(data.value).subscribe(rs => {
-        // console.log(rs['user']);
+        this.toastrHelpService.showToastrSuccess('Đăng nhập thành công', 'Đăng nhập');
         this.localStorageService.setItemLocalStorage('userInfo', rs['user']).subscribe(() => { });
         this.localStorageService.setItemLocalStorage('token', rs['token']).subscribe(() => { });
         this.localStorageService.getItemLocalStorage('returnURL').subscribe(url => {
           // this.router.navigateByUrl(url.toString());
-          this.redirectTo(url.toString());
+          this.router.navigateByUrl(url.toString());
         })
       })
     }
