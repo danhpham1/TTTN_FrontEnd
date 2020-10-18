@@ -11,6 +11,7 @@ import { CategoryPageComponent } from './views/category-page/category-page.compo
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { CartListPageComponent } from './views/cart-list-page/cart-list-page.component';
 import { OrderPageComponent } from './views/order-page/order-page.component';
+import { SearchPageComponent } from './views/search-page/search-page.component';
 
 
 
@@ -24,6 +25,7 @@ import { OrderPageComponent } from './views/order-page/order-page.component';
     ProductCardComponent,
     CartListPageComponent,
     OrderPageComponent,
+    SearchPageComponent,
   ],
   imports: [
     CommonModule,

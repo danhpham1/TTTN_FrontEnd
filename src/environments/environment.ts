@@ -27,7 +27,10 @@ export const environment = {
   APIUserRegister: '/user/register',
 
   //order
-  APICreateOrder: '/order'
+  APICreateOrder: '/order',
+
+  //search
+  APISearchProduct: '/search'
 };
 
 /*

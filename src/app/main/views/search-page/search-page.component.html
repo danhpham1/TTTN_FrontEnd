@@ -1,0 +1,26 @@
+<main>
+    <div class="shop-page-title">
+        <div class="container">
+            <h4>Đồng hồ đeo tay</h4>
+            <nav>
+                <a routerLink="/">Trang chủ</a>
+                <span>/</span>
+                <span>
+                    Tìm Kiếm
+                </span>
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="product brand">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 mt-3" *ngFor="let item of product$|async | paginate:config">
+                    <app-product-card [product]="item" (addProduct)="addToCart($event)"></app-product-card>
+                </div>
+            </div>
+            <div class="mt-5 text-center pagi">
+                <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</main>

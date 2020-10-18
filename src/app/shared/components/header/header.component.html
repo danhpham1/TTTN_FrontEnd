@@ -1,9 +1,9 @@
 <header class="header">
     <div class="header-main">
         <div class="left-header">
-            <form class="form-inline active-pink-4">
-                <input class="form-control" type="text" placeholder="Tìm Kiếm...">
-                <button type="button" class="btn btn-danger search"><i class="fa fa-search"></i></button>
+            <form class="form-inline active-pink-4" #searchForm="ngForm" (ngSubmit)="onSubmitSearchForm(searchForm)">
+                <input class="form-control" type="text" id="search" name="search" placeholder="Tìm Kiếm..." ngModel>
+                <button type="submit" class="btn btn-danger search"><i class="fa fa-search"></i></button>
             </form>
         </div>
         <div class="header-logo">

@@ -27,7 +27,7 @@ export class ToastrHelpService {
   }
 
   showToastrWarning(message: string, title: string) {
-    this.toastrService.success(message, title, {
+    this.toastrService.warning(message, title, {
       timeOut: 2000,
       easing: 'ease-in',
       easeTime: 400

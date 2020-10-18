@@ -4,6 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
@@ -31,7 +32,8 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
-    })
+    }),
+    FormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpconfigInterceptor, multi: true }

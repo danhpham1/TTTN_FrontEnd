@@ -1,3 +1,4 @@
+import { NgForm } from '@angular/forms';
 import { ToastrHelpService } from './../../../core/services/toastr-help.service';
 import { LocalStorageService } from './../../../core/services/local-storage.service';
 import { MenuService } from './../../services/menu.service';
@@ -7,6 +8,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-header',
@@ -61,6 +63,14 @@ export class HeaderComponent implements OnInit {
   redirectTo(uri: string) {
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
       this.router.navigateByUrl(uri));
+  }
+
+  onSubmitSearchForm(data) {
+    if (data.value.search !== "") {
+      this.router.navigateByUrl(`/search?title=${data.value.search}`);
+    } else {
+      this.toastrHelpService.showToastrWarning("Nhập tên sản phẩm bạn cần tìm", "Tìm Kiếm");
+    }
   }
 
 }

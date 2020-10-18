@@ -9,6 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Cart } from '../shared/models/cart';
 import { Subject } from 'rxjs';
 import { HomePageComponent } from './views/home-page/home-page.component';
+import { SearchPageComponent } from './views/search-page/search-page.component';
 
 @Component({
   selector: 'app-main',
@@ -70,7 +71,8 @@ export class MainComponent implements OnInit {
 
     if (componentReference instanceof HomePageComponent ||
       componentReference instanceof CategoryPageComponent ||
-      componentReference instanceof ProductDetailPageComponent
+      componentReference instanceof ProductDetailPageComponent ||
+      componentReference instanceof SearchPageComponent
     ) {
       componentReference.addProduct.subscribe((data) => {
         this.toastrHelpService.showToastrWarning("Thêm giỏ hàng thành công", "Giỏ hàng");
