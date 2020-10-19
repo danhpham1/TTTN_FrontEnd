@@ -1,0 +1,75 @@
+<main *ngIf="orderDetail$ | async as orderDetail">
+    <div class="container">
+        <div class="row mt-3 detail-order-title pl-3">
+            <p>Chi tiết đơn hàng {{orderDetail._id}} -
+                <ng-container *ngIf="orderDetail.state == 0">
+                    <b>Đang xử lý</b>
+                </ng-container>
+                <ng-container *ngIf="orderDetail.state == 1">
+                    <b>Đang giao hàng</b>
+                </ng-container>
+                <ng-container *ngIf="orderDetail.state == 2">
+                    <b>Đã giao hàng</b>
+                </ng-container>
+            </p>
+        </div>
+        <div class="row justify-content-end">
+            <p>Ngày đặt hàng: {{orderDetail.dateCreate|date:"dd/MM/yyyy"}}</p>
+        </div>
+        <div class="row mt-3">
+            <div class="w-100">
+                <p class="text-uppercase pl-3">Địa chỉ người nhận</p>
+                <div class="bg-light w-100 pl-3 pt-3 pb-3">
+                    <p class="font-weight-bold">
+                        {{orderDetail.name}}
+                    </p>
+                    <p>
+                        Địa chỉ: {{orderDetail.address}}
+                    </p>
+                    <p>
+                        Điện thoại: {{orderDetail.phone}}
+                    </p>
+                </div>
+            </div>
+            <div class="w-100 mt-3">
+                <p class="text-uppercase pl-3">Hình thức thanh toán</p>
+                <div class="bg-light w-100 pl-3 pt-3 pb-3">
+                    <p class="font-weight-bold">Thanh toán khi nhận hàng</p>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col" style="width: 45%;">Tên Sản Phẩm</th>
+                        <th scope="col" style="width: 15%;">Số Lượng</th>
+                        <th scope="col" style="width: 25%;">Giá</th>
+                        <th scope="col" style="width: 15%;">Tổng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of orderDetail.orderDetail">
+                        <td>
+                            <img src="{{environment.EndPointAPI}}/img/product/{{item.logo}}" alt="">
+                            <a href="#">{{item.name}}</a>
+                        </td>
+                        <td style="width: 15%;">
+                            {{item.amout}}
+                        </td>
+                        <td style="width: 25%;">
+                            {{item.price}}
+                        </td>
+                        <td style="width: 15%;">
+                            {{item.price * item.amout |currency:"VND":"symbol"}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="total-cart d-flex justify-content-end w-100 mt-3">
+                <p class="font-weight-bold"><span class="text-secondary">Tổng Cộng:</span><span
+                        class="text-danger">{{getTotal(orderDetail.orderDetail)|currency:"VND":"symbol"}}</span></p>
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,3 +1,4 @@
+import { TokenExpiredService } from './../../../core/services/token-expired.service';
 import { NgForm } from '@angular/forms';
 import { ToastrHelpService } from './../../../core/services/toastr-help.service';
 import { LocalStorageService } from './../../../core/services/local-storage.service';
@@ -25,7 +26,8 @@ export class HeaderComponent implements OnInit {
   constructor(private menuService: MenuService,
     private localStorageService: LocalStorageService,
     private router: Router,
-    private toastrHelpService: ToastrHelpService
+    private toastrHelpService: ToastrHelpService,
+    private tokenExpiredService: TokenExpiredService
   ) { }
 
   ngOnInit(): void {

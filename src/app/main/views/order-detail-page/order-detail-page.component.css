@@ -1,0 +1,49 @@
+main .detail-order-title p,main .detail-order-title b{
+    font-size: 1.5rem;
+}
+
+.cart .cart-title h4{
+    width: 100%;
+    text-transform: uppercase;
+    font-size: 2rem;
+    text-align: center;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+table tr th{
+    color: #969696;
+    text-transform: uppercase;
+}
+
+table tr td img{
+    width: 80px;
+    height: auto;
+    display: block
+}
+
+table tr td:first-child{
+    display: flex;
+    align-items: center;
+}
+
+table tr td a{
+    padding-left: 10px;
+    color: black;
+}
+
+table tr td a:hover{
+    color: red;
+    transition: 0.4s ease-in;
+    text-decoration: none !important;
+}
+
+table tr td {
+    vertical-align: middle !important;
+}
+
+table tr td i:hover{
+    transform: scale(1.2);
+    color: red;
+    transition: 0.4s ease-in;
+}

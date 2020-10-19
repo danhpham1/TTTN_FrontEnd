@@ -12,6 +12,8 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { CartListPageComponent } from './views/cart-list-page/cart-list-page.component';
 import { OrderPageComponent } from './views/order-page/order-page.component';
 import { SearchPageComponent } from './views/search-page/search-page.component';
+import { HistoryOrderPageComponent } from './views/history-order-page/history-order-page.component';
+import { OrderDetailPageComponent } from './views/order-detail-page/order-detail-page.component';
 
 
 
@@ -26,6 +28,8 @@ import { SearchPageComponent } from './views/search-page/search-page.component';
     CartListPageComponent,
     OrderPageComponent,
     SearchPageComponent,
+    HistoryOrderPageComponent,
+    OrderDetailPageComponent,
   ],
   imports: [
     CommonModule,

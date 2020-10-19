@@ -1,0 +1,48 @@
+<main *ngIf="orderList$|async as orderList">
+    <div class="container">
+        <div class="row justify-content-center mt-3">
+            <h4 class="text-secondary text-uppercase">Đơn Hàng Của Tôi</h4>
+        </div>
+        <div class="row">
+            <div class="history-table-order">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 20%;">Mã Đơn Hàng</th>
+                            <th scope="col" style="width: 15%;">Ngày Mua</th>
+                            <th scope="col" style="width: 35%;">Sản Phẩm</th>
+                            <th scope="col" style="width: 10%;">Tổng Tiền</th>
+                            <th scope="col" style="width: 20%;">Trạng Thái Đơn Hàng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let order of orderList;let i=index">
+                            <td style="width: 20%;"><a routerLink="/order/detail/{{order._id}}">{{order._id}}</a></td>
+                            <td style="width: 15%;">{{order.dateCreate | date:"dd/MM/yyyy"}}</td>
+                            <td style="width: 35%;">
+                                <ul *ngFor="let item of order.orderDetail">
+                                    <li>{{item.name}} x {{item.amout}}</li>
+                                </ul>
+                            </td>
+                            <td style="width: 10%;">{{order.total|currency:"VND":"symbol"}}</td>
+                            <ng-container *ngIf="order.state == 0">
+                                <td style="width: 20%;">Đang Xử Lý</td>
+                            </ng-container>
+                            <ng-container *ngIf="order.state == 1">
+                                <td style="width: 20%;">Đang Giao Hàng</td>
+                            </ng-container>
+                            <ng-container *ngIf="order.state == 2">
+                                <td style="width: 20%;">Đã Giao Hàng</td>
+                            </ng-container>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <ng-container *ngIf="orderList.length < 1">
+            <div class="mt-5">
+                <p class="text-center text-secondary text-uppercase font-weight-bold">Không Có Đơn Hàng Nào</p>
+            </div>
+        </ng-container>
+    </div>
+</main>

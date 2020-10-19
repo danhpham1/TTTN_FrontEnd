@@ -28,7 +28,7 @@ export const environment = {
 
   //order
   APICreateOrder: '/order',
-
+  APIOrderDetail: '/order/detail',
   //search
   APISearchProduct: '/search'
 };

@@ -1,0 +1,27 @@
+main .history-table-order{
+    width: 100%;
+    margin-top: 10px;
+}
+
+main .history-table-order table thead tr th{
+    color: #6c757d;
+}
+
+main .history-table-order table tbody tr td a{
+    color: black;
+    font-weight: normal !important;
+}
+
+main .history-table-order table tbody tr td a:hover{
+    color: red !important;
+    transition: ease-in 0.4s;
+}
+
+main .history-table-order table tbody tr:hover{
+    background-color: rgb(246, 252, 255);
+    transition: ease-in 0.2s;
+}
+
+main .history-table-order table tbody tr td ul li{
+    list-style: circle !important;
+}

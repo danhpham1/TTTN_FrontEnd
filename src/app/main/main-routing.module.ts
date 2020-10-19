@@ -1,3 +1,5 @@
+import { OrderDetailPageComponent } from './views/order-detail-page/order-detail-page.component';
+import { HistoryOrderPageComponent } from './views/history-order-page/history-order-page.component';
 import { SearchPageComponent } from './views/search-page/search-page.component';
 import { GuardOrderGuard } from './../core/guard/guard-order.guard';
 import { OrderPageComponent } from './views/order-page/order-page.component';
@@ -39,6 +41,14 @@ const routes: Routes = [
       {
         path: 'search',
         component: SearchPageComponent
+      },
+      {
+        path: 'history/order/:username',
+        component: HistoryOrderPageComponent
+      },
+      {
+        path: 'order/detail/:id',
+        component: OrderDetailPageComponent
       }
     ]
   }

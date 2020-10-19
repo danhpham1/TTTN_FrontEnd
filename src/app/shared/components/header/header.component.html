@@ -19,7 +19,8 @@
                     {{user.name}}
                 </button>
                 <div #dropdownMenu class="dropdown-menu hide">
-                    <button class="dropdown-item text-secondary">Xem Đơn Hàng</button>
+                    <button class="dropdown-item text-secondary" routerLink='/history/order/{{user.username}}'>Xem Đơn
+                        Hàng</button>
                     <button class="dropdown-item text-secondary" (click)="signup()">Đăng Xuất</button>
                 </div>
             </div>
