@@ -57,13 +57,4 @@ export class ProductDetailPageComponent implements OnInit {
     this.addProduct.emit(product);
     this.router.navigate(['cart']);
   }
-
-  signup() {
-    this.localStorageService.getItemLocalStorage('token').subscribe(token => {
-      if (token && this.tokenExpiredService.checkTokenExpired(token)) {
-        this.localStorageService.removeItemLocalStorage('userInfo');
-        this.localStorageService.removeItemLocalStorage('token');
-      }
-    })
-  }
 }

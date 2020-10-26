@@ -36,13 +36,7 @@ export class MainComponent implements OnInit {
         this.localStorageService.setItemLocalStorage('cart', this.cartItem).subscribe(() => { });
       }
     })
-    this.localStorageService.getItemLocalStorage('token').subscribe(token => {
-      if (token && !this.tokenExpiredService.checkTokenExpired(token)) {
-        this.localStorageService.removeItemLocalStorage('userInfo').subscribe(() => { });
-        this.localStorageService.removeItemLocalStorage('token').subscribe(() => { });
-        this.localStorageService.removeItemLocalStorage('cart').subscribe(() => { });
-      }
-    })
+    this.tokenExpiredService.checkTokenExpired();
   }
 
   onActivate(componentReference) {
@@ -60,13 +54,6 @@ export class MainComponent implements OnInit {
         this.cartItem.items = newCart;
         this.localStorageService.setItemLocalStorage('cart', this.cartItem).subscribe(() => { });
       })
-      // componentReference.changeAmoutProduct.subscribe(item => {
-      //   this.cartItem.items.map(el => {
-      //     if (el.idProduct == item.id) {
-      //       return el.amout = item.amount
-      //     }
-      //   })
-      // })
     }
 
     if (componentReference instanceof HomePageComponent ||
@@ -93,8 +80,6 @@ export class MainComponent implements OnInit {
             logo: data.logo
           })
         }
-        // this.cart$.next(this.cartItem.items);
-        // console.log(this.cartItem);
         this.localStorageService.setItemLocalStorage('cart', this.cartItem).subscribe(() => { });
       })
     }

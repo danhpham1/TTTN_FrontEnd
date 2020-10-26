@@ -61,7 +61,6 @@ export class CategoryPageComponent implements OnInit {
         this.callGetProductService(type, brand);
       })
     })
-    this.signup();
   }
 
   addToCart(event) {
@@ -95,13 +94,10 @@ export class CategoryPageComponent implements OnInit {
     this.configPagenation();
   }
 
-  signup() {
-    this.localStorageService.getItemLocalStorage('token').subscribe(token => {
-      if (token && !this.tokenExpiredService.checkTokenExpired(token)) {
-        this.localStorageService.removeItemLocalStorage('userInfo');
-        this.localStorageService.removeItemLocalStorage('token');
-      }
-    })
-  }
+  // signup() {
+  //   this.localStorageService.removeItemLocalStorage('userInfo');
+  //   this.localStorageService.removeItemLocalStorage('token');
+  //   this.localStorageService.removeItemLocalStorage('cart');
+  // }
 
 }

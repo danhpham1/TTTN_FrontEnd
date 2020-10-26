@@ -52,6 +52,7 @@ export class HeaderComponent implements OnInit {
   signup() {
     this.toastrHelpService.showToastrSuccess('Đăng Xuất Thành Công', 'Đăng Xuất')
     this.localStorageService.removeItemLocalStorage('token').subscribe(() => { });
+    this.localStorageService.removeItemLocalStorage('cart').subscribe(() => { });
     this.localStorageService.removeItemLocalStorage('userInfo').subscribe(rs => {
       this.localStorageService.getItemLocalStorage('returnURL').subscribe(url => {
         this.redirectTo(url.toString());

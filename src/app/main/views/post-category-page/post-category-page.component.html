@@ -1,0 +1,45 @@
+<main *ngIf="postList$|async as postList">
+    <div class="container">
+        <div class="row ">
+            <div class="col-lg-9 col-md-12 col-sm-12">
+                <ng-container *ngFor="let post of postList">
+                    <article class="post-list mt-3">
+                        <div class="post-list-title">
+                            <a routerLink="/post/{{post._id}}">
+                                <h4>{{post.title}}</h4>
+                            </a>
+                            <p>Posted on {{post.dateCreate|date:"dd/MM/yyyy"}} by admin</p>
+                        </div>
+                        <div class="post-list-img">
+                            <a routerLink="/post/{{post._id}}">
+                                <img src="{{environment.EndPointAPI}}/img/post/{{post.logo}}" alt="">
+                            </a>
+                        </div>
+                        <div class="post-list-content">
+                            <p>
+                                {{post.contentSub.substr(0,300)}} […]
+                            </p>
+                            <button routerLink="/post/{{post._id}}">continue reading <i
+                                    class="fa fa-arrow-right"></i></button>
+                        </div>
+                    </article>
+                </ng-container>
+            </div>
+            <div class="col-lg-3 col-md-12 col-sm-12">
+                <div class="new-post mt-3">
+                    <h4>Bài viết mới</h4>
+                </div>
+                <div class="mt-4">
+                    <ng-container *ngFor="let post of postList;let i = index">
+                        <div class="title-new-post">
+                            <a routerLink="/post/{{post._id}}">
+                                <p>{{post.title}}</p>
+                            </a>
+                        </div>
+                        <hr *ngIf="i !== (postList.length - 1)">
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

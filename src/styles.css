@@ -33,6 +33,7 @@ li a:hover{
    text-decoration: none; 
    color: red !important;
    transition: ease-in 0.2s;
+   cursor: pointer;
 }
 
 body{
@@ -281,6 +282,7 @@ main .post-watch .box-post .box-img{
 main .post-watch .box-post:hover{
     transition: ease-in-out 0.3s;
     color: red !important;
+    cursor: pointer;
 }
 
 main .post-watch .box-post .box-img img{

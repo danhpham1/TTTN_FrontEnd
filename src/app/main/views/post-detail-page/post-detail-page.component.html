@@ -1,0 +1,25 @@
+<main *ngIf="post$|async as post">
+    <div class="container">
+        <div class="row ">
+            <div class="col-lg-9 col-md-12 col-sm-12 mt-3 post-detail-container">
+                <div class="post-detail" [innerHTML]="post.content">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-12 col-sm-12" *ngIf="postList$|async as postList">
+                <div class="new-post mt-3">
+                    <h4>Bài viết mới</h4>
+                </div>
+                <div class="mt-4">
+                    <ng-container *ngFor="let post of postList;let i = index">
+                        <div class="title-new-post">
+                            <a routerLink="/post/{{post._id}}">
+                                <p>{{post.title}}</p>
+                            </a>
+                        </div>
+                        <hr *ngIf="i !== (postList.length - 1)">
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

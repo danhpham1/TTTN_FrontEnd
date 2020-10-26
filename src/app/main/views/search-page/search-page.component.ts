@@ -58,14 +58,4 @@ export class SearchPageComponent implements OnInit {
     window.scrollTo(0, 0);
     this.config.currentPage = event;
   }
-
-  signup() {
-    this.localStorageService.getItemLocalStorage('token').subscribe(token => {
-      if (token && !this.tokenExpiredService.checkTokenExpired(token)) {
-        this.localStorageService.removeItemLocalStorage('userInfo');
-        this.localStorageService.removeItemLocalStorage('token');
-      }
-    })
-  }
-
 }

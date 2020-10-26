@@ -1,3 +1,5 @@
+import { PostDetailPageComponent } from './views/post-detail-page/post-detail-page.component';
+import { PostCategoryPageComponent } from './views/post-category-page/post-category-page.component';
 import { OrderDetailPageComponent } from './views/order-detail-page/order-detail-page.component';
 import { HistoryOrderPageComponent } from './views/history-order-page/history-order-page.component';
 import { SearchPageComponent } from './views/search-page/search-page.component';
@@ -49,6 +51,14 @@ const routes: Routes = [
       {
         path: 'order/detail/:id',
         component: OrderDetailPageComponent
+      },
+      {
+        path: 'posts',
+        component: PostCategoryPageComponent
+      },
+      {
+        path: 'post/:id',
+        component: PostDetailPageComponent
       }
     ]
   }

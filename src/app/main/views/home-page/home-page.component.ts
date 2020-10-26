@@ -1,3 +1,4 @@
+import { PostService } from './../../services/post.service';
 import { TokenExpiredService } from './../../../core/services/token-expired.service';
 import { LocalStorageService } from './../../../core/services/local-storage.service';
 import { ProductService } from './../../services/product.service';
@@ -26,7 +27,7 @@ export class HomePageComponent implements OnInit {
   home$: Observable<any>;
   watchMale$: Observable<Array<Product>>;
   watchFemale$: Observable<Array<Product>>;
-  test: Array<Product>;
+  posts$: Observable<any>;
   environment = environment;
 
   @Output() addProduct = new EventEmitter();
@@ -36,7 +37,8 @@ export class HomePageComponent implements OnInit {
     private productService: ProductService,
     private location: Location,
     private localStorageService: LocalStorageService,
-    private tokenExpiredService: TokenExpiredService
+    private tokenExpiredService: TokenExpiredService,
+    private postService: PostService
   ) { }
 
   ngOnInit(): void {
@@ -44,14 +46,8 @@ export class HomePageComponent implements OnInit {
     this.brand$ = this.brandService.getBrand();
     this.watchMale$ = this.productService.getProductWithType('nam', '6').pipe(map(rs => rs.data));
     this.watchFemale$ = this.productService.getProductWithType('nu', '6').pipe(map(rs => rs.data));
+    this.posts$ = this.postService.getPostWithNumberPost(3);
     this.localStorageService.setItemLocalStorage('returnURL', this.location.path()).subscribe(() => { });
-    this.localStorageService.getItemLocalStorage('token').subscribe(token => {
-      if (token && !this.tokenExpiredService.checkTokenExpired(token)) {
-        this.localStorageService.removeItemLocalStorage('userInfo').subscribe(() => { });
-        this.localStorageService.removeItemLocalStorage('token').subscribe(() => { });
-        this.localStorageService.removeItemLocalStorage('cart').subscribe(() => { });
-      }
-    })
   }
 
   addToCart(event) {

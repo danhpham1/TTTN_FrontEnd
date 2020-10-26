@@ -1,0 +1,12 @@
+main .post-detail ::ng-deep img{
+    width: 100% !important;
+    height: auto !important;
+}
+
+main .post-detail-container{
+    width: 100% !important;
+    height: auto;
+     border-left: 1px solid #ededed;
+    border-bottom: 3px solid #ededed;
+    border-right: 1px solid #ededed;
+}

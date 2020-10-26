@@ -30,7 +30,12 @@ export const environment = {
   APICreateOrder: '/order',
   APIOrderDetail: '/order/detail',
   //search
-  APISearchProduct: '/search'
+  APISearchProduct: '/search',
+  //check token
+  APICheckToken: '/checktoken',
+  //posts
+  APIPosts: '/posts',
+  APIPostDetail: '/post'
 };
 
 /*
