@@ -21,8 +21,8 @@
                                 <a href="#">{{item.name}}</a>
                             </td>
                             <td>
-                                <input (change)="changeAmount($event,item.idProduct)" type="number"
-                                    [(value)]="item.amout" min="1">
+                                <input (change)="changeAmount($event,item.idProduct,item.maxAmount)" type="number"
+                                    [(value)]="item.amout" min="1" max="{{item.maxAmount}}">
                             </td>
                             <td>
                                 {{item.price | currency:"VND":"symbol"}}

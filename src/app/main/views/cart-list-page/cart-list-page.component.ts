@@ -24,7 +24,6 @@ export class CartListPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.localStorageService.setItemLocalStorage('returnURL', this.location.path()).subscribe(() => { });
-    // console.log(this.location.path());
     this.getTotalCart();
   }
 
@@ -37,6 +36,7 @@ export class CartListPageComponent implements OnInit {
   getTotalCart() {
     this.localStorageService.getItemLocalStorage('cart').subscribe(cartItems => {
       if (this.cartItems) {
+        console.log(this.cartItems);
         this.totalInCart = this.cartItems.reduce((total, el) => {
           return total += (el.amout * el.price)
         }, 0)
@@ -44,7 +44,10 @@ export class CartListPageComponent implements OnInit {
     })
   }
 
-  changeAmount(event, idProduct) {
+  changeAmount(event, idProduct, max) {
+    if (event.target.value > max) {
+      event.target.value = max;
+    }
     this.cartItems.map(el => {
       if (el.idProduct == idProduct) {
         return el.amout = event.target.value
@@ -54,6 +57,4 @@ export class CartListPageComponent implements OnInit {
     this.getTotalCart();
     this.changeAmoutProduct.emit({ amout: event.target.value, id: idProduct });
   }
-
-
 }

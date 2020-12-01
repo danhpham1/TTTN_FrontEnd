@@ -16,7 +16,8 @@ export interface Product {
     logo: string,
     creator: string,
     type: string,
-    guarantee: string
+    guarantee: string,
+    amount: number
 }
 
 export interface ProductDescribe {

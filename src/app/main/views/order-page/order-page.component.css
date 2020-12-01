@@ -56,7 +56,7 @@ main .order-sumary-item{
     align-items: center;
 }
 
-main .order-total{
+main .order-total div{
     display: flex;
     justify-content: space-between;
     align-items: center;

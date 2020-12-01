@@ -17,8 +17,10 @@ export class OrderPageComponent implements OnInit {
   userInfo$: Observable<User>;
   cartItem$: Observable<any>;
   environment = environment;
-
   isConfirm: boolean;
+  isSelectPay: boolean;
+  isPhoneValid: boolean;
+  isAddressValid: boolean;
 
   constructor(
     private localStorageService: LocalStorageService,
@@ -43,8 +45,13 @@ export class OrderPageComponent implements OnInit {
   }
 
   postOrder(orderForm) {
-    if (orderForm.value.comfirm) {
-      this.isConfirm = true;
+    this.isAddressValid = true;
+    this.isPhoneValid = true;
+    this.isConfirm = true;
+    this.isSelectPay = true;
+
+    if (orderForm.value.comfirm == true && orderForm.value.pay && orderForm.value.phone && orderForm.value.address) {
+      console.log("asdas");
       this.cartItem$.subscribe(rs => {
         let orderData = {
           ...orderForm.value,
@@ -65,7 +72,18 @@ export class OrderPageComponent implements OnInit {
         })
       })
     } else {
-      this.isConfirm = false;
+      if (!orderForm.value.comfirm) {
+        this.isConfirm = false;
+      }
+      if (!orderForm.value.pay) {
+        this.isSelectPay = false;
+      }
+      if (!orderForm.value.phone) {
+        this.isPhoneValid = false;
+      }
+      if (!orderForm.value.address) {
+        this.isAddressValid = false;
+      }
     }
   }
 }

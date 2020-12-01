@@ -77,7 +77,8 @@ export class MainComponent implements OnInit {
             name: data.title,
             price: data.price,
             amout: 1,
-            logo: data.logo
+            logo: data.logo,
+            maxAmount: data.amount
           })
         }
         this.localStorageService.setItemLocalStorage('cart', this.cartItem).subscribe(() => { });

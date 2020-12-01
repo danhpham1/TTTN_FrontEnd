@@ -33,8 +33,12 @@
             </div>
 
             <div class="control-group">
-                <input type="email" class="login-field" value="" placeholder="email" id="email" name="email" ngModel>
                 <label class="login-field-icon fui-lock" for="email"></label>
+                <input type="email" required class="login-field" value="" placeholder="email" id="email" name="email"
+                    ngModel>
+                <ng-container *ngIf="isValidEmail == false">
+                    <p class="text-danger">Email bắt buộc hoặc email không hợp lệ</p>
+                </ng-container>
             </div>
 
             <div class="control-group">
