@@ -20,6 +20,11 @@
             <div class="col-lg-4 col-md-12 col-sm-12" *ngIf="product$|async as product">
                 <img src="{{environment.EndPointAPI}}/img/product/{{product.logo}}" class="fancybox zoom img-fluid "
                     alt="">
+                <ng-container *ngIf="product.amount == 0">
+                    <p class="box-limit">
+                        Hết Hàng
+                    </p>
+                </ng-container>
             </div>
             <div class="col-lg-4 col-md-12 col-sm-12" *ngIf="product$|async as product">
                 <div class="product-describe">
@@ -38,10 +43,19 @@
                     <div class="product-describe-guarantee">
                         <p>Chính sách bảo hành: <b>{{product.guarantee}} Năm</b></p>
                     </div>
-                    <div class="product-describe-button">
-                        <button (click)="addToCart(product)">Thêm vào giỏ hàng</button>
-                        <button (click)="buy(product)" class="ml-1">Mua ngay</button>
-                    </div>
+                    <ng-container *ngIf="product.amount > 0">
+                        <div class="product-describe-button">
+                            <button (click)="addToCart(product)">Thêm vào giỏ hàng</button>
+                            <button (click)="buy(product)" class="ml-1">Mua ngay</button>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="product.amount ==0 ">
+                        <div class="product-describe-button-disable">
+                            <button disabled (click)="addToCart(product)">Thêm vào giỏ hàng</button>
+                            <button disabled (click)="buy(product)" class="ml-1">Mua ngay</button>
+                        </div>
+                    </ng-container>
+
                 </div>
             </div>
             <div class="col-lg-4 col-md-12 pl-5" *ngIf="product$|async as product">

@@ -25,3 +25,14 @@ main .history-table-order table tbody tr:hover{
 main .history-table-order table tbody tr td ul li{
     list-style: circle !important;
 }
+
+main .history-table-order table tbody tr td i {
+    font-size: 25px;
+    margin-top: 10px;
+}
+
+main .history-table-order table tbody tr td i:hover{
+    transform: scale(1.2);
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}

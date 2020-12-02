@@ -1,3 +1,15 @@
 .product-cart a:hover{
     cursor: pointer;
 }
+
+.product-cart .box-img .box-limit{
+    position: absolute;
+    top: 35px;
+    right: 15px;
+    font-weight: 600;
+    font-size: 16px;
+    transform: rotateZ(40deg);
+    border: 1px solid red;
+    background: red;
+    color: white;
+}

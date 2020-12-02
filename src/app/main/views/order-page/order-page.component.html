@@ -60,6 +60,17 @@
                             </ng-container>
                         </div>
                         <div class="form-group">
+                            <label for="kvgh">Chọn khu vực giao hàng</label>
+                            <select class="form-control" id="kvgh" name="kvgh" (change)="changeValue($event)" ngModel>
+                                <option value="" selected disabled hidden>Choose here</option>
+                                <option value="0">Trong thành phố</option>
+                                <option value="1">Ngoài thành phố</option>
+                            </select>
+                            <ng-container *ngIf="isAreaShip == false">
+                                <p class="text-danger">Chọn khu vực giao hàng</p>
+                            </ng-container>
+                        </div>
+                        <div class="form-group">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="confirm" name="comfirm" ngModel>
                                 <label class="form-check-label" for="confirm">
@@ -93,11 +104,15 @@
                     <div class="order-total">
                         <div>
                             <p>Phí Ship</p>
-                            <p>{{20000|currency:"VND":"symbol"}}</p>
+                            <p>{{costShip|currency:"VND":"symbol"}}</p>
                         </div>
                         <div>
-                            <p>Total</p>
+                            <p>Tổng giá sản phẩm</p>
                             <p>{{getTotalInCart(data.cartItem.items)|currency:"VND":"symbol"}}</p>
+                        </div>
+                        <div class="total">
+                            <p>Tổng</p>
+                            <p>{{(getTotalInCart(data.cartItem.items) + costShip)|currency:"VND":"symbol"}}</p>
                         </div>
                     </div>
                 </div>

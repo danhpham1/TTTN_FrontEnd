@@ -1,11 +1,18 @@
 <div class="product-cart pl-2 pr-2">
-    <span>
-        <a (click)="addToCart()"><i class="fa fa-shopping-cart fa-2x text-danger"></i></a>
-    </span>
+    <ng-container *ngIf="product.amount > 0">
+        <span>
+            <a (click)="addToCart()"><i class="fa fa-shopping-cart fa-2x text-danger"></i></a>
+        </span>
+    </ng-container>
     <div class="box-img">
         <a routerLink="/product/{{product._id}}">
             <img src="{{environment.EndPointAPI}}/img/product/{{product.logo}}" alt="">
         </a>
+        <ng-container *ngIf="product.amount == 0">
+            <p class="box-limit">
+                Hết Hàng
+            </p>
+        </ng-container>
     </div>
     <div class="box-text">
         <div class="box-title">

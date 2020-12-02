@@ -1,3 +1,29 @@
 main .product-describe-button button:focus{
     outline: none;
 }
+.box-limit{
+    position: absolute;
+    top: 35px;
+    right: 20px;
+    font-weight: 600;
+    font-size: 16px;
+    transform: rotateZ(40deg);
+    border: 1px solid red;
+    background: red;
+    color: white;
+}
+
+.product-describe-button-disable{
+    display: flex;
+    justify-content: center;
+}
+
+.product-describe-button-disable button{
+    width: 100%;
+    padding: 5px 10px;
+    border: 2px solid gray;
+    background: gray;
+    color: white;
+    border-radius: 20px;
+    font-weight: 700;
+}

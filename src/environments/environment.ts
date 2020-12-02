@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
 
-  EndPointAPI: 'https://radiant-stream-23882.herokuapp.com',
+  // EndPointAPI: 'https://radiant-stream-23882.herokuapp.com',
+  EndPointAPI: 'http://localhost:3000',
 
   APIPrefix: '/api',
   APIVersion: '/v1',

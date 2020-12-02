@@ -21,6 +21,8 @@ export class OrderPageComponent implements OnInit {
   isSelectPay: boolean;
   isPhoneValid: boolean;
   isAddressValid: boolean;
+  isAreaShip: boolean;
+  costShip: number = 0;
 
   constructor(
     private localStorageService: LocalStorageService,
@@ -49,14 +51,14 @@ export class OrderPageComponent implements OnInit {
     this.isPhoneValid = true;
     this.isConfirm = true;
     this.isSelectPay = true;
+    this.isAreaShip = true;
 
-    if (orderForm.value.comfirm == true && orderForm.value.pay && orderForm.value.phone && orderForm.value.address) {
-      console.log("asdas");
+    if (orderForm.value.comfirm == true && orderForm.value.pay && orderForm.value.phone && orderForm.value.address && orderForm.value.kvgh) {
       this.cartItem$.subscribe(rs => {
         let orderData = {
           ...orderForm.value,
           ...rs,
-          totalInCart: this.getTotalInCart(rs.items)
+          totalInCart: +(this.getTotalInCart(rs.items)) + this.costShip
         }
         this.localStorageService.getItemLocalStorage('token').subscribe(token => {
           this.orderService.postOrder(orderData, token).subscribe(rs => {
@@ -84,6 +86,18 @@ export class OrderPageComponent implements OnInit {
       if (!orderForm.value.address) {
         this.isAddressValid = false;
       }
+      if (!orderForm.value.kvgh) {
+        this.isAreaShip = false;
+      }
+    }
+  }
+
+  changeValue(event) {
+    console.log(event.target.value);
+    if (event.target.value == 0) {
+      this.costShip = 0;
+    } else {
+      this.costShip = 20000;
     }
   }
 }

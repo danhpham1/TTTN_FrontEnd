@@ -31,4 +31,11 @@ export class OrderService {
     )
     return this.http.get<OrderHistory.OrderDetail>(environment.EndPointAPI + environment.APIPrefix + environment.APIVersion + environment.APIOrderDetail + '/' + id, { headers: httpHeaders })
   }
+
+  patchOrderDetail(id: string, token: string) {
+    const httpHeaders: HttpHeaders = new HttpHeaders(
+      { 'x-access-token': token }
+    )
+    return this.http.patch<any>(environment.EndPointAPI + environment.APIPrefix + environment.APIVersion + environment.APICreateOrder, { id: id }, { headers: httpHeaders });
+  }
 }

@@ -2,6 +2,9 @@
     <div class="container">
         <div class="row mt-3 detail-order-title pl-3">
             <p>Chi tiết đơn hàng {{orderDetail._id}} -
+                <ng-container *ngIf="orderDetail.state == -1">
+                    <b>Đơn hàng đã bị hủy</b>
+                </ng-container>
                 <ng-container *ngIf="orderDetail.state == 0">
                     <b>Đang xử lý</b>
                 </ng-container>
