@@ -24,6 +24,9 @@ export class PostDetailPageComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.post$ = this.postService.getPostDetailById(params['id']);
       this.postList$ = this.postService.getAllPost();
+      let nav = document.querySelector('.wide-nav-mobi');
+      nav.classList.remove('nav-show');
+      nav.classList.add('nav-hide');
     })
   }
 

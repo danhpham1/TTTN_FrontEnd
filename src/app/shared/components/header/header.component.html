@@ -24,7 +24,8 @@
                         {{user.name}}
                     </button>
                     <div #dropdownMenu class="dropdown-menu hide">
-                        <button class="dropdown-item text-secondary" routerLink='/history/order/{{user.username}}'>Xem Đơn
+                        <button class="dropdown-item text-secondary" routerLink='/history/order/{{user.username}}'>Xem
+                            Đơn
                             Hàng</button>
                         <button class="dropdown-item text-secondary" (click)="signup()">Đăng Xuất</button>
                     </div>
@@ -41,12 +42,60 @@
                     <button type="button" routerLink="/cart" class="btn btn-danger cart">
                         {{(cartItems["items"].length > 0)?cartItems["items"].length:0}}
                         <i class="fa fa-cart-plus"></i>
-                </button>
+                    </button>
                 </ng-container>
             </div>
         </div>
     </div>
     <nav class="wide-nav">
+        <div class="wrapper-nav">
+            <ul>
+                <li *ngFor="let menu of menu$ | async">
+                    <ng-container *ngIf="menu.title == 'Thương Hiệu'">
+                        <a routerLink="/category/all" [routerLinkActive]="'active'">{{menu.title}}<i
+                                class="fa fa-angle-down text-secondary ml-2"></i></a>
+                        <!-- sub nav -->
+                        <ul *ngIf="menu.subMenu.length >= 1">
+                            <li *ngFor="let menuSub of menu.subMenu">
+                                <a routerLink="/category/all" [queryParams]="{brand:menuSub}">
+                                    {{menuSub}}
+                                </a>
+                            </li>
+                        </ul>
+                    </ng-container>
+                    <ng-container *ngIf="menu.title == 'Đồng Hồ Nam'">
+                        <a routerLink="/category/dong-ho-nam" [routerLinkActive]="'active'">{{menu.title}}<i
+                                class="fa fa-angle-down text-secondary ml-2"></i></a>
+                        <!-- sub nav -->
+                        <ul *ngIf="menu.subMenu.length >= 1">
+                            <li *ngFor="let menuSub of menu.subMenu">
+                                <a routerLink="/category/dong-ho-nam" [queryParams]="{brand:menuSub}">{{menuSub}}</a>
+                            </li>
+                        </ul>
+                    </ng-container>
+                    <ng-container *ngIf="menu.title == 'Đồng Hồ Nữ'">
+                        <a routerLink="/category/dong-ho-nu" [routerLinkActive]="'active'">{{menu.title}}<i
+                                class="fa fa-angle-down text-secondary ml-2"></i></a>
+                        <!-- sub nav -->
+                        <ul *ngIf="menu.subMenu.length >= 1">
+                            <li *ngFor="let menuSub of menu.subMenu">
+                                <a routerLink="/category/dong-ho-nu" [queryParams]="{brand:menuSub}">{{menuSub}}</a>
+                            </li>
+                        </ul>
+                    </ng-container>
+                    <ng-container *ngIf="menu.title == 'Tin Tức'">
+                        <a routerLink="/posts">{{menu.title}}</a>
+                        <!-- sub nav -->
+                    </ng-container>
+                    <ng-container *ngIf="menu.title == 'Liên Hệ'">
+                        <a routerLink="/lien-he">{{menu.title}}</a>
+                        <!-- sub nav -->
+                    </ng-container>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <nav class="wide-nav wide-nav-mobi">
         <div class="wrapper-nav">
             <form class="form-inline active-pink-4" #searchForm1="ngForm" (ngSubmit)="onSubmitSearchForm(searchForm1)">
                 <input class="form-control" type="text" id="search" name="search" placeholder="Tìm Kiếm..." ngModel>

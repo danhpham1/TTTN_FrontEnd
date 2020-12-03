@@ -27,3 +27,25 @@ main .product-describe-button button:focus{
     border-radius: 20px;
     font-weight: 700;
 }
+
+
+@media (max-width: 850px){
+    .product-left-mobile{
+        padding: 0px !important;
+        margin-top: 15px;
+    }
+
+    .product-left-mobile .product-left .product-lef-img{
+        margin-left: 0px !important;
+    }
+
+    .product-left-mobile .product-left .product-left-box{
+        padding-left: 10px;
+    }
+}
+
+@media (max-width: 500px){
+    .product-data ul li{
+        list-style: none;
+    }
+}

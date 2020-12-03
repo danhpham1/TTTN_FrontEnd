@@ -17,9 +17,9 @@ export class PostCategoryPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.postList$ = this.postService.getAllPost();
-    let nav = document.querySelector('nav');
-    nav.classList.add('nav-hide');
+    let nav = document.querySelector('.wide-nav-mobi');
     nav.classList.remove('nav-show');
+    nav.classList.add('nav-hide');
   }
 
 }

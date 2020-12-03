@@ -77,26 +77,26 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  expand(){
-    let nav = document.querySelector('nav');
-    if(!nav.classList.contains('nav-hide') && !nav.classList.contains('nav-show')){
+  expand() {
+    let nav = document.querySelector('.wide-nav-mobi');
+    if (!nav.classList.contains('nav-hide') && !nav.classList.contains('nav-show')) {
       nav.classList.add('nav-hide');
     }
-    if(nav.classList.contains('nav-hide')){
+    if (nav.classList.contains('nav-hide')) {
       nav.classList.remove('nav-hide');
       nav.classList.add('nav-show');
-    }else{
+    } else {
       nav.classList.remove('nav-show');
       nav.classList.add('nav-hide');
     }
   }
 
-  toggleUser(){
+  toggleUser() {
     let user = document.querySelector('.action-user');
-    if(user.classList.contains('hide')){
+    if (user.classList.contains('hide')) {
       user.classList.remove('hide');
       user.classList.add('show');
-    }else{
+    } else {
       user.classList.remove('show');
       user.classList.add('hide');
     }

@@ -1,0 +1,13 @@
+@media (max-width: 850px){
+    .scroll-btn button{
+        bottom: 0px;
+        right: 0px;
+    }
+}
+
+@media (max-width: 414){
+    .scroll-btn button{
+        bottom: 0px;
+        right: 16px;
+    }
+}

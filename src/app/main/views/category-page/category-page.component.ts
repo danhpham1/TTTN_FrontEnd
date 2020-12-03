@@ -56,12 +56,12 @@ export class CategoryPageComponent implements OnInit {
           if (querys['brand']) {
             brand = querys['brand'];
             this.brandNamePageActive = brand;
-          }else{
+          } else {
             this.titleNamePageActive = querys['brand'];
           }
         }
         this.callGetProductService(type, brand);
-        let nav = document.querySelector('nav');
+        let nav = document.querySelector('.wide-nav-mobi');
         nav.classList.remove('nav-show');
         nav.classList.add('nav-hide');
       })

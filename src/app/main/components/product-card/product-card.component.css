@@ -21,6 +21,7 @@
     }
     .product-cart .box-img{
         width: 100%;
+        height: auto;
     }
 
     ::ng-deep .brand-img{
@@ -31,12 +32,34 @@
         width: 100%;
         height: auto;
     }
+
+    ::ng-deep .product-cart .product-cart-icon{
+        position: absolute;
+        left: 20px !important;
+        top: 280px !important;
+    }
 }
 
-@media (max-width: 572px){
-    
-    .product-cart .box-img a .box-image-responsive{
-        width: auto;
-        height: auto;
+@media (max-width: 500px){
+    ::ng-deep .product-cart .product-cart-icon{
+        position: absolute;
+        left: 25px !important;
+        top: 165px !important;
+    }
+    .box-limit{
+        top: 25px !important;
+        right: 0px !important;
+    }
+}
+
+@media (max-width:768px){
+    ::ng-deep .product-cart .product-cart-icon{
+        position: absolute;
+        left: 15px !important;
+        top: 190px !important;
+    }
+    ::ng-deep .box-limit{
+        top: 30px !important;
+        right: 10px !important;
     }
 }

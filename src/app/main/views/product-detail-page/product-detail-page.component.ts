@@ -46,6 +46,9 @@ export class ProductDetailPageComponent implements OnInit {
         );
         collapse($);
       })
+      let nav = document.querySelector('.wide-nav-mobi');
+      nav.classList.remove('nav-show');
+      nav.classList.add('nav-hide');
     })
   }
 

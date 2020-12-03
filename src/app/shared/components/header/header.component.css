@@ -35,6 +35,10 @@ nav .wrapper-nav .btn-group-responsive{
     display: none;
 }
 
+.wide-nav-mobi{
+    display: none;
+}
+
 @media (max-width: 850px) {
     .header .header-main form{
         display: none;
@@ -70,6 +74,12 @@ nav .wrapper-nav .btn-group-responsive{
         position: absolute;
         transform: translateX(-100%);
         z-index: 100;
+    }
+    .wide-nav{
+        display: none;
+    }
+    .wide-nav-mobi{
+        display: block;
     }
     nav .wrapper-nav ul{
         display: flex;
