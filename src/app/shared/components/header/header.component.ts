@@ -69,10 +69,36 @@ export class HeaderComponent implements OnInit {
   }
 
   onSubmitSearchForm(data) {
+    console.log(data)
     if (data.value.search !== "") {
       this.router.navigateByUrl(`/search?title=${data.value.search}`);
     } else {
       this.toastrHelpService.showToastrWarning("Nhập tên sản phẩm bạn cần tìm", "Tìm Kiếm");
+    }
+  }
+
+  expand(){
+    let nav = document.querySelector('nav');
+    if(!nav.classList.contains('nav-hide') && !nav.classList.contains('nav-show')){
+      nav.classList.add('nav-hide');
+    }
+    if(nav.classList.contains('nav-hide')){
+      nav.classList.remove('nav-hide');
+      nav.classList.add('nav-show');
+    }else{
+      nav.classList.remove('nav-show');
+      nav.classList.add('nav-hide');
+    }
+  }
+
+  toggleUser(){
+    let user = document.querySelector('.action-user');
+    if(user.classList.contains('hide')){
+      user.classList.remove('hide');
+      user.classList.add('show');
+    }else{
+      user.classList.remove('show');
+      user.classList.add('hide');
     }
   }
 

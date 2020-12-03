@@ -1,0 +1,11 @@
+@media (max-width: 850px){
+    main .banner img{
+        object-fit: contain;
+        width: 102%;
+        height: auto;
+    }
+    main .product .product-cart{
+        width: 100%;
+        text-align: center
+    }
+}

@@ -75,18 +75,18 @@ header .header-logo h3{
     text-transform: uppercase;
 }
 
-header .right-header button{
+header .right-header div button{
     color: #ffffff;
     font-size: 0.8rem;
     text-transform: uppercase;
     font-weight: bold;
 }
 
-header .right-header .login{
+header .right-header div .login{
     margin-right: 10px;
 }
 
-header .right-header .cart{
+header .right-header div .cart{
     margin-left: 10px;
 }
 

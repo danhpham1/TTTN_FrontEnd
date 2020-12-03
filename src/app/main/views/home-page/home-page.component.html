@@ -11,10 +11,10 @@
             </h2>
             <div class="row text-center">
                 <ng-container *ngIf="brand$ | async as brands">
-                    <div class="col-lg-3 col-md-3 col-sm-6 mt-2" *ngFor="let brand of brands.data">
+                    <div class="col-lg-3 col-md-4 col-6 mt-2" *ngFor="let brand of brands.data">
                         <div style="height: 120px;">
                             <a routerLink="/category/brand" [queryParams]="{brand:brand.title}" class="text-dark">
-                                <img src="{{environment.EndPointAPI}}/img/brand/{{brand.logo}}"
+                                <img class="brand-img" src="{{environment.EndPointAPI}}/img/brand/{{brand.logo}}"
                                     style="width: 200px; height: 120px;">
                             </a>
                         </div>
@@ -31,7 +31,7 @@
                 <b></b>
             </h2>
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6 mt-3" *ngFor="let item of watchMale$|async">
+                <div class=" col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-3" *ngFor="let item of watchMale$|async">
                     <app-product-card [product]="item" (addProduct)="addToCart($event)"></app-product-card>
                 </div>
             </div>

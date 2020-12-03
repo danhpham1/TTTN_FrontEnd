@@ -30,6 +30,9 @@ export class SearchPageComponent implements OnInit {
     this.route.queryParams.subscribe(querys => {
       this.product$ = this.searchService.getSearchProduct(querys['title']).pipe(map(rs => rs.data.reverse()))
       this.configPagenation();
+      let nav = document.querySelector('nav');
+      nav.classList.remove('nav-show');
+      nav.classList.add('nav-hide');
     })
   }
 

@@ -6,7 +6,7 @@
     </ng-container>
     <div class="box-img">
         <a routerLink="/product/{{product._id}}">
-            <img src="{{environment.EndPointAPI}}/img/product/{{product.logo}}" alt="">
+            <img class="box-image-responsive" src="{{environment.EndPointAPI}}/img/product/{{product.logo}}" alt="">
         </a>
         <ng-container *ngIf="product.amount == 0">
             <p class="box-limit">

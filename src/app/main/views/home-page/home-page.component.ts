@@ -48,6 +48,9 @@ export class HomePageComponent implements OnInit {
     this.watchFemale$ = this.productService.getProductWithType('nu', '6').pipe(map(rs => rs.data));
     this.posts$ = this.postService.getPostWithNumberPost(3);
     this.localStorageService.setItemLocalStorage('returnURL', this.location.path()).subscribe(() => { });
+    let nav = document.querySelector('nav');
+      nav.classList.remove('nav-show');
+      nav.classList.add('nav-hide');
   }
 
   addToCart(event) {

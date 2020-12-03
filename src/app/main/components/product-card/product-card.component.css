@@ -13,3 +13,30 @@
     background: red;
     color: white;
 }
+
+@media (max-width: 850px){
+     .product-cart{
+        width: 100% !important;
+        text-align: center
+    }
+    .product-cart .box-img{
+        width: 100%;
+    }
+
+    ::ng-deep .brand-img{
+        width: 100% !important;
+        height: 100% !important;
+    }
+    .product-cart .box-img a .box-image-responsive{
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 572px){
+    
+    .product-cart .box-img a .box-image-responsive{
+        width: auto;
+        height: auto;
+    }
+}

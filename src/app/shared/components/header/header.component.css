@@ -6,3 +6,159 @@
     display: block !important;
     transition: 0.4s ease-in;
 }
+
+.header .header-main .left-header-responesive{
+    display: none
+}
+
+.header .header-main .right-header .right-header-responsive{
+    display: none;
+}
+
+.nav-hide{
+    transform: translateX(-100%);
+    transition: 0.5s ease-out;
+    opacity: 0;
+}
+
+.nav-show{
+    transform: translateX(0%);
+    transition: 0.5s ease-out;
+    opacity:1;
+}
+
+nav .wrapper-nav .form-inline{
+    display: none
+}
+
+nav .wrapper-nav .btn-group-responsive{
+    display: none;
+}
+
+@media (max-width: 850px) {
+    .header .header-main form{
+        display: none;
+    }
+
+    .header .header-main .left-header-responesive{
+        display: inline-block;
+    }
+    
+    .header .header-main .left-header-responesive i{
+        font-size: 25px;
+        padding: 5px;
+        margin: 0 0 3px 5px;
+        cursor: pointer;
+    }
+
+    .header .header-main .right-header div{
+        display: none;
+    }
+
+    .header .header-main .right-header .right-header-responsive{
+        display: inline-block
+    }
+
+    .header .header-main .right-header .right-header-responsive button{
+        font-size: 16px
+    }
+
+    nav{
+        margin: 0px;
+        margin-top: -1px;    
+        width: 101%;
+        position: absolute;
+        transform: translateX(-100%);
+        z-index: 100;
+    }
+    nav .wrapper-nav ul{
+        display: flex;
+        flex-direction: column;
+    }
+
+    nav .wrapper-nav{
+        width: 100%;
+        height: auto;
+        margin: 0px;
+        margin-left: 28px;
+    }
+    
+    nav .wrapper-nav .form-inline{
+        margin-left: 10px;
+        padding: 5px;
+        display: inline-block;
+        width: 100%;
+    }
+
+    nav .wrapper-nav .form-inline input{
+        width: 50%;
+        display: inline;
+    }
+
+    nav .wrapper-nav .form-inline button{
+        margin-left: 20px;
+        margin-bottom: 5px;
+    }
+
+    nav ul li:hover > ul{
+        display: inline-block;
+        position: relative;
+        top: 0px;
+        transform: translateY(0%);
+        transition:0.5s ease-in-out;
+        opacity: 1;
+    }
+
+    nav .wrapper-nav ul li ul{
+        display: none;
+        position: relative;
+        height: 100%;
+    }
+
+    nav .wrapper-nav ul li ul{
+        background-color: inherit;
+    }
+
+    nav .wrapper-nav .btn-group-responsive{
+        display: block;
+    }
+
+    nav .wrapper-nav .login{
+        border: none;
+        padding: 5px 5px 15px 5px;
+        margin-left: 10px;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+
+    nav .wrapper-nav .login:hover{
+        color: red !important;
+        transition: ease-in 0.2s;
+        cursor: pointer;
+    }
+    nav .wrapper-nav .btn-group .login{
+        border: none;
+        padding: 5px 5px 15px 5px;
+        margin-left: 10px;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+
+    nav .wrapper-nav .dropdown-menu .login{
+        border: none;
+        padding: 5px 5px 15px 5px;
+        margin-left: 10px;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+
+    nav .wrapper-nav .btn-group .login:focus{
+        border: none;
+        outline: none;
+    }
+
+    nav .wrapper-nav .btn-group div .login{
+        display: block;
+        margin-left: 25px
+    }
+}

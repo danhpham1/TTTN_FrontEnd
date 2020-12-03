@@ -5,40 +5,58 @@
                 <input class="form-control" type="text" id="search" name="search" placeholder="Tìm Kiếm..." ngModel>
                 <button type="submit" class="btn btn-danger search"><i class="fa fa-search"></i></button>
             </form>
+            <div class="left-header-responesive">
+                <i (click)="expand()" class="fa fa-bars" aria-hidden="true"></i>
+            </div>
         </div>
+
         <div class="header-logo">
             <a routerLink='/home'>
                 <h3 class="text-danger font-weight-bold">watch</h3>
             </a>
         </div>
         <div class="right-header">
-            <button *ngIf="user == null" routerLink="/auth" type="button" class="btn btn-danger login">Đăng
-                Nhập</button>
-            <div *ngIf="user" class="btn-group" (click)="dropdown()" role="group">
-                <button id="btnGroupDrop1" type="button" class="btn btn-danger login dropdown-toggle">
-                    {{user.name}}
-                </button>
-                <div #dropdownMenu class="dropdown-menu hide">
-                    <button class="dropdown-item text-secondary" routerLink='/history/order/{{user.username}}'>Xem Đơn
-                        Hàng</button>
-                    <button class="dropdown-item text-secondary" (click)="signup()">Đăng Xuất</button>
+            <div>
+                <button *ngIf="user == null" routerLink="/auth" type="button" class="btn btn-danger login">Đăng
+                    Nhập</button>
+                <div *ngIf="user" class="btn-group" (click)="dropdown()" role="group">
+                    <button id="btnGroupDrop1" type="button" class="btn btn-danger login dropdown-toggle">
+                        {{user.name}}
+                    </button>
+                    <div #dropdownMenu class="dropdown-menu hide">
+                        <button class="dropdown-item text-secondary" routerLink='/history/order/{{user.username}}'>Xem Đơn
+                            Hàng</button>
+                        <button class="dropdown-item text-secondary" (click)="signup()">Đăng Xuất</button>
+                    </div>
                 </div>
+                |
+                <ng-container *ngIf="cartItems">
+                    <button type="button" routerLink="/cart" class="btn btn-danger cart">Giỏ
+                        Hàng/{{(cartItems["items"].length > 0)?cartItems["items"].length:0}}
+                        Sản Phẩm <i class="fa fa-cart-plus"></i></button>
+                </ng-container>
             </div>
-            |
-            <ng-container *ngIf="cartItems">
-                <button type="button" routerLink="/cart" class="btn btn-danger cart">Giỏ
-                    Hàng/{{(cartItems["items"].length > 0)?cartItems["items"].length:0}}
-                    Sản Phẩm <i class="fa fa-cart-plus"></i></button>
-            </ng-container>
+            <div class="right-header-responsive">
+                <ng-container *ngIf="cartItems">
+                    <button type="button" routerLink="/cart" class="btn btn-danger cart">
+                        {{(cartItems["items"].length > 0)?cartItems["items"].length:0}}
+                        <i class="fa fa-cart-plus"></i>
+                </button>
+                </ng-container>
+            </div>
         </div>
     </div>
     <nav class="wide-nav">
         <div class="wrapper-nav">
+            <form class="form-inline active-pink-4" #searchForm1="ngForm" (ngSubmit)="onSubmitSearchForm(searchForm1)">
+                <input class="form-control" type="text" id="search" name="search" placeholder="Tìm Kiếm..." ngModel>
+                <button type="submit" class="btn btn-danger search"><i class="fa fa-search"></i></button>
+            </form>
             <ul>
                 <li *ngFor="let menu of menu$ | async">
                     <ng-container *ngIf="menu.title == 'Thương Hiệu'">
                         <a routerLink="/category/all" [routerLinkActive]="'active'">{{menu.title}}<i
-                                class="fa fa-angle-down text-secondary"></i></a>
+                                class="fa fa-angle-down text-secondary ml-2"></i></a>
                         <!-- sub nav -->
                         <ul *ngIf="menu.subMenu.length >= 1">
                             <li *ngFor="let menuSub of menu.subMenu">
@@ -50,7 +68,7 @@
                     </ng-container>
                     <ng-container *ngIf="menu.title == 'Đồng Hồ Nam'">
                         <a routerLink="/category/dong-ho-nam" [routerLinkActive]="'active'">{{menu.title}}<i
-                                class="fa fa-angle-down text-secondary"></i></a>
+                                class="fa fa-angle-down text-secondary ml-2"></i></a>
                         <!-- sub nav -->
                         <ul *ngIf="menu.subMenu.length >= 1">
                             <li *ngFor="let menuSub of menu.subMenu">
@@ -60,7 +78,7 @@
                     </ng-container>
                     <ng-container *ngIf="menu.title == 'Đồng Hồ Nữ'">
                         <a routerLink="/category/dong-ho-nu" [routerLinkActive]="'active'">{{menu.title}}<i
-                                class="fa fa-angle-down text-secondary"></i></a>
+                                class="fa fa-angle-down text-secondary ml-2"></i></a>
                         <!-- sub nav -->
                         <ul *ngIf="menu.subMenu.length >= 1">
                             <li *ngFor="let menuSub of menu.subMenu">
@@ -78,6 +96,19 @@
                     </ng-container>
                 </li>
             </ul>
+            <button *ngIf="user == null" routerLink="/auth" type="button" class="login btn-group-responsive">Đăng
+                Nhập</button>
+            <div *ngIf="user" class="btn-group btn-group-responsive" (click)="dropdown()" role="group">
+                <button id="btnGroupDrop1" type="button" class="login">
+                    {{user.name}}
+                    <i class="fa fa-angle-down text-secondary ml-2" (click)="toggleUser()"></i>
+                </button>
+                <div class="action-user hide">
+                    <button class="login" routerLink='/history/order/{{user.username}}'>Xem Đơn
+                        Hàng</button>
+                    <button class="login" (click)="signup()">Đăng Xuất</button>
+                </div>
+            </div>
         </div>
     </nav>
 </header>
