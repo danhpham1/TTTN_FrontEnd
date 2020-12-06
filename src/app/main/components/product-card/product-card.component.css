@@ -14,6 +14,10 @@
     color: white;
 }
 
+.product-cart .btn-add-cart{
+    display: none;
+}
+
 @media (max-width: 850px){
      .product-cart{
         width: 100% !important;
@@ -37,6 +41,30 @@
         position: absolute;
         left: 20px !important;
         top: 280px !important;
+    }
+
+    ::ng-deep .product-cart:hover span{
+        display: none !important;
+    }
+
+    .product-cart .btn-add-cart{
+        display: inline-block;
+        margin: 10px 0px;
+    }
+
+    .product-cart .btn-add-cart button{
+        font-size: 15px;
+        font-weight: 700;
+        padding: 5px 20px;
+        border: none;
+        border-radius: 10px;
+        background: red;
+        color: white;
+    }
+
+    .product-cart .btn-add-cart button:hover{
+        background-color: #c82333;
+        border-color: #bd2130;
     }
 }
 

@@ -222,6 +222,10 @@ main .product .product-cart span{
     display: none;
 }
 
+main .product .product-cart .box-text{
+    height: 100px;
+}
+
 main .product .product-cart .box-text .box-title{
     width: 100%;
     text-align: center;
@@ -539,6 +543,9 @@ main .product-info button:focus{
 }
 main .product-info button:first-child{
     margin-right: 5px;
+}
+main .product-info button:last-child{
+    margin-left: 5px;
 }
 
 main .product-info .product-data{

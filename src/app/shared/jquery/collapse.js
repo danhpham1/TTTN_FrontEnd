@@ -1,19 +1,19 @@
 export function collapse($) {
     $(document).ready(function () {
         $('#collapse-product-guarantee').hide();
+        $('#collapse-product-comment').hide();
         $('#describe').click(function () {
             setTimeout(function () {
                 if ($('#product-guarantee').hasClass('active')) {
                     $('#product-guarantee').removeClass('active');
-                    $('#describe').addClass('active');
-                    $('#collapse-product-guarantee').hide();
-                    $('#collapse-describe').show();
-
-                } else {
-                    $('#describe').addClass('active');
-                    $('#collapse-product-guarantee').hide();
-                    $('#collapse-describe').show();
                 }
+                if($('#product-comment').hasClass('active')) {
+                    $('#product-comment').removeClass('active');
+                }
+                $('#describe').addClass('active');
+                $('#collapse-product-guarantee').hide();
+                $('#collapse-product-comment').hide();
+                $('#collapse-describe').show();
             }, 200)
         })
 
@@ -21,15 +21,31 @@ export function collapse($) {
             setTimeout(function () {
                 if ($('#describe').hasClass('active')) {
                     $('#describe').removeClass('active');
-                    $('#product-guarantee').addClass('active');
-                    $('#collapse-describe').hide();
-                    $('#collapse-product-guarantee').show();
-
-                } else {
-                    $('#product-guarantee').addClass('active');
-                    $('#collapse-describe').hide();
-                    $('#collapse-product-guarantee').show();
+                    
                 }
+                if($('#product-comment').hasClass('active')) {
+                    $('#product-comment').removeClass('active');
+                }
+                $('#product-guarantee').addClass('active');
+                $('#collapse-describe').hide();
+                $('#collapse-product-comment').hide();
+                $('#collapse-product-guarantee').show();
+            }, 200)
+        })
+
+        $('#product-comment').click(function () {
+            setTimeout(function () {
+                if ($('#describe').hasClass('active')) {
+                    $('#describe').removeClass('active');
+                    
+                }
+                if ($('#product-guarantee').hasClass('active')) {
+                    $('#product-guarantee').removeClass('active');   
+                }
+                $('#product-comment').addClass('active');
+                $('#collapse-describe').hide();
+                $('#collapse-product-guarantee').hide();
+                $('#collapse-product-comment').show();
             }, 200)
         })
     })

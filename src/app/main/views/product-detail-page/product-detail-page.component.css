@@ -49,3 +49,18 @@ main .product-describe-button button:focus{
         list-style: none;
     }
 }
+
+@media (max-width:992px){
+    .product-left-mobile{
+        padding: 0px !important;
+        margin-top: 15px;
+    }
+
+    .product-left-mobile .product-left .product-lef-img{
+        margin-left: 0px !important;
+    }
+
+    .product-left-mobile .product-left .product-left-box{
+        padding-left: 10px;
+    }
+}
