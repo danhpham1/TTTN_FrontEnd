@@ -16,6 +16,7 @@ import { HistoryOrderPageComponent } from './views/history-order-page/history-or
 import { OrderDetailPageComponent } from './views/order-detail-page/order-detail-page.component';
 import { PostCategoryPageComponent } from './views/post-category-page/post-category-page.component';
 import { PostDetailPageComponent } from './views/post-detail-page/post-detail-page.component';
+import { ProductCommentComponent } from './components/product-comment/product-comment.component';
 
 
 
@@ -34,6 +35,7 @@ import { PostDetailPageComponent } from './views/post-detail-page/post-detail-pa
     OrderDetailPageComponent,
     PostCategoryPageComponent,
     PostDetailPageComponent,
+    ProductCommentComponent,
   ],
   imports: [
     CommonModule,

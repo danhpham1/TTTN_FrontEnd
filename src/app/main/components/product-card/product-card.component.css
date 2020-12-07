@@ -90,4 +90,7 @@
         top: 30px !important;
         right: 10px !important;
     }
+    .product-cart .box-text {
+        height: 135px;
+    }
 }

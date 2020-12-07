@@ -2,6 +2,10 @@ export function collapse($) {
     $(document).ready(function () {
         $('#collapse-product-guarantee').hide();
         $('#collapse-product-comment').hide();
+        $('#collapse-describe').show();
+        $('#describe').addClass('active');
+        $('#product-comment').removeClass('active');
+        $('#product-guarantee').removeClass('active');
         $('#describe').click(function () {
             setTimeout(function () {
                 if ($('#product-guarantee').hasClass('active')) {

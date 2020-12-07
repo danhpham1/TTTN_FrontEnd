@@ -1,0 +1,9 @@
+<div class="product-comment">
+    <div class="comment-info">
+        <p class="comment-name">{{comment.username == currentUser ? 'Bạn' : comment.name}}</p>
+        <p class="comment-date">{{comment.dateCreate|date:'dd-MM-yyyy'}}</p>
+    </div>
+    <div class="comment-content">
+        {{comment.comment}}
+    </div>
+</div>

@@ -95,9 +95,9 @@
                     <button id="product-guarantee">
                         Chính sách bảo hành
                     </button>
-                    <!-- <button id="product-comment">
+                    <button id="product-comment">
                         Bình Luận
-                    </button> -->
+                    </button>
                 </div>
 
                 <div class="product-data" id="collapse-describe">
@@ -126,9 +126,35 @@
                     </div>
                 </div>
 
-                <!-- <div class="product-data" id="collapse-product-comment">
+                <div class="product-data" id="collapse-product-comment">
+                    <ng-container *ngIf="comment$|async as comments;else commentNotFound">
+                        <ng-container *ngIf="comments['data'].length > 0;else commentNotFound">
+                            <app-product-comment *ngFor="let item of comments['data']" [comment]="item"></app-product-comment>
+                        </ng-container>
+                    </ng-container>
+                    <ng-template #commentNotFound>
+                        <div class="product-comment-not-found">
+                            <p>Không có bình luận nào cho sản phẩm này</p>
+                        </div>
+                    </ng-template>
                     
-                </div> -->
+                    <div class="product-comment-form" *ngIf="user$|async as user;else commentLogin">
+                        <form #commentForm="ngForm" (ngSubmit)="submitComment(commentForm)" >
+                            <div class="form-group">
+                                <textarea required class="form-control" id="comment" name="comment" ngModel placeholder="Nội dung bình luận....." rows="5"></textarea>
+                            </div>
+                            <input type="hidden" name="username" ngModel={{user.username}}>
+                            <input type="hidden" name="name" ngModel={{user.name}}>
+                            <button type="submit" class="btn btn-secondary">Bình luận</button>
+                        </form>
+                    </div>
+                    <ng-template #commentLogin>
+                        <div class="comment-login">
+                            <p>Đăng nhập để bình luận sản phẩm</p>
+                            <a routerLink="/auth" type="button" class="btn btn-secondary">Đăng Nhập</a>
+                        </div>
+                    </ng-template>
+                </div>
             </div>
         </div>
         <hr>

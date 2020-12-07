@@ -1,0 +1,42 @@
+.product-comment{
+    margin: 15px 15px 20px 15px;
+}
+
+.product-comment .comment-info{
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-comment .comment-info .comment-name{
+    margin: 0px 0px 0px 10px;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 10px;
+}
+
+.product-comment .comment-info .comment-date{
+    margin: 0px 10px 0px 0px;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px;
+}
+
+.product-comment .comment-info{
+    background-color: rgb(208, 217, 217);
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.product-comment .comment-content{
+    background-color: rgba(159, 166, 166,0.4);
+    border-left: 1px solid black;
+    border-bottom: 2px solid black;
+    border-right: 1px solid black;
+    padding: 10px 0px 10px 20px;
+    font-size: 16px;
+    font-weight: 400;
+}

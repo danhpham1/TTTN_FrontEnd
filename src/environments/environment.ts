@@ -36,7 +36,9 @@ export const environment = {
   APICheckToken: '/checktoken',
   //posts
   APIPosts: '/posts',
-  APIPostDetail: '/post'
+  APIPostDetail: '/post',
+  //comment
+  APIComments:'/comments'
 };
 
 /*

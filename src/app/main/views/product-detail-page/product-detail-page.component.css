@@ -28,6 +28,35 @@ main .product-describe-button button:focus{
     font-weight: 700;
 }
 
+.product-comment-not-found{
+    margin: 30px;
+    text-align: center;
+}
+
+.product-comment-not-found p{
+    padding: 10px;
+    font-size: 25px;
+    font-weight: 600;
+    color: gray;
+    text-transform: uppercase;
+}
+
+.product-comment-form .form-group, .product-comment-form button{
+    margin: 10px;
+}
+
+.comment-login{
+    margin: 10px
+}
+
+.comment-login p{
+    font-weight: 500; 
+}
+
+.comment-login a{
+    color: white !important;
+    font-weight: 600;
+}
 
 @media (max-width: 850px){
     .product-left-mobile{

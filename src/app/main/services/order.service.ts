@@ -14,7 +14,6 @@ export class OrderService {
     const httpHeaders: HttpHeaders = new HttpHeaders(
       { 'x-access-token': token }
     )
-    console.log(environment.APICreateOrder);
     return this.http.post(environment.EndPointAPI + environment.APIPrefix + environment.APIVersion + environment.APICreateOrder, { ...data }, { headers: httpHeaders });
   }
 
