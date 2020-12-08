@@ -217,8 +217,8 @@ main .product .product-cart .box-img a img{
 }
 main .product .product-cart span{
     position: absolute;
-    left: 40px;
-    top: 250px;
+    left: 25px;
+    top: 200px;
     display: none;
 }
 
