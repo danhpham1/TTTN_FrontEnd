@@ -198,7 +198,7 @@ main .section-brand .row div div:hover{
 
 /* product */
 main .product .product-cart{
-    width: 300px;
+    /* width: 300px; */
     height: auto;
     position: relative;
 }
